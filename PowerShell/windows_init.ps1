@@ -17,16 +17,33 @@ Get-Service -Name ssh-agent | Set-Service -StartupType Manual
 # Install chocolatey
 Write-Host "Install Chocolatey"
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+# Referesh Environment Variables
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine")
+choco upgrade chocolatey
+# Install CaskaydiaCove Font
+choco upgrade powershell-core
 
-# Pretty icons
-Install-Module -Name Terminal-Icons
+# Install Pretty icons
+Install-Module -Name Terminal-Icons -Repository PSGallery
 
 # Install pre release for list view of predictions
 Install-Module PSReadLine -AllowPrerelease -Force
 
-# Set CaskaydiaCove NF for powershell
+# Set CaskaydiaCove NF for default powershell window
 Set-ItemProperty -Path "Registry::HKEY_CURRENT_USER\Console" -Name "FaceName" -Value "CaskaydiaCove NF" -Type String;
 
 Update-Help
 
-choco upgrade chocolatey
+
+
+# Archive
+# Install Fonts
+# $FontFolder = ".\FontsFolder"
+# $FontItem = Get-Item -Path $FontFolder
+# $FontList = Get-ChildItem -Path "$FontItem\*" -Include ('*.fon', '*.otf', '*.ttc', '*.ttf')
+
+# foreach ($Font in $FontList) {
+#     Write-Host 'Installing font -' $Font.BaseName
+#     Copy-Item $Font "C:\Windows\Fonts"
+#     New-ItemProperty -Name $Font.BaseName -Path "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Fonts" -PropertyType string -Value $Font.name
+# }
