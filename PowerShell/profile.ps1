@@ -26,7 +26,38 @@ Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
 ################################################################
 # ALIASES & FUNCTIONS
 ################################################################
-# The bare repo alias command
+Set-Alias -Name keys -Value Get-PSReadLineKeyHandler
+
+Function Test-CommandExists {
+    Param ($command)
+    $oldPreference = $ErrorActionPreference
+    $ErrorActionPreference = "stop"
+    try { if (Get-Command $command) { RETURN $true } }
+    Catch { Write-Host "$command does not exist"; RETURN $false }
+    Finally { $ErrorActionPreference = $oldPreference }
+
+}
+
+function AddToPath {
+    param (
+        [string]$folder
+    )
+
+    Write-Host "Adding $folder to environment variables..." -ForegroundColor Yellow
+
+    $currentEnv = [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine).Trim(";");
+    $addedEnv = $currentEnv + ";$folder"
+    $trimmedEnv = (($addedEnv.Split(';') | Select-Object -Unique) -join ";").Trim(";")
+    [Environment]::SetEnvironmentVariable(
+        "Path",
+        $trimmedEnv,
+        [EnvironmentVariableTarget]::Machine)
+
+    Write-Host "Reloading environment variables..." -ForegroundColor Green
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+}
+
+# The bare repo config/alias command
 # e.g
 # config status
 # config add -u (add all changes from tracked files)
@@ -41,7 +72,7 @@ function profile() {
     code $Home\Powershell\profile.ps1
 }
 
-Set-Alias -Name keys -Value Get-PSReadLineKeyHandler
+
 
 ################################################################
 # KEYBOARD BINDINGS

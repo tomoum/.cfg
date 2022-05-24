@@ -6,16 +6,19 @@
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
 
 $apps =
+"cascadia-code-nerd-font",
+"oh-my-posh",
+"git"
 "gh",
 "7zip",
-"oh-my-posh",
 "adobereader",
-"cascadia-code-nerd-font",
-"git"
+"powershell-core"
 
 foreach ($app in $apps) {
     "Installing: [$app]"
-    choco install $app -y
+    choco upgrade $app -y
 }
 
-Write-Output "Now Please replace the windows terminal json file with the one in this directory"
+Write-Output -------------------------------
+Write-Output "Installation Complete"
+Write-Output -------------------------------

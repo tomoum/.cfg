@@ -14,13 +14,33 @@ $profile | Select-Object *
 # Start the ssh agent service
 Get-Service -Name ssh-agent | Set-Service -StartupType Manual
 
+Function Test-CommandExists {
+    Param ($command)
+    $oldPreference = $ErrorActionPreference
+    $ErrorActionPreference = "stop"
+    try { if (Get-Command $command) { RETURN $true } }
+    Catch { Write-Host "$command does not exist"; RETURN $false }
+    Finally { $ErrorActionPreference = $oldPreference }
+
+}
+
 # Install chocolatey
-Write-Host "Install Chocolatey"
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+if (Check-Command ('choco')) {
+    Write-Host "Choco is already installed, skip installation."
+}
+else {
+    Write-Host ""
+    Write-Host "Installing Chocolate for Windows..." -ForegroundColor Green
+    Write-Host "------------------------------------" -ForegroundColor Green
+    Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+}
 # Referesh Environment Variables
-$env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine")
+Write-Host "Reloading environment variables..." -ForegroundColor Green
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+
+Write-Host "Upgrade Choco"
 choco upgrade chocolatey
-# Install CaskaydiaCove Font
+Write-Host "Upgrade powershell-core"
 choco upgrade powershell-core
 
 # Install Pretty icons
@@ -34,9 +54,13 @@ Set-ItemProperty -Path "Registry::HKEY_CURRENT_USER\Console" -Name "FaceName" -V
 
 Update-Help
 
+.\choco_installs.ps1
 
 
-# Archive
+# #####################################
+# ARCHIVE
+# #####################################
+
 # Install Fonts
 # $FontFolder = ".\FontsFolder"
 # $FontItem = Get-Item -Path $FontFolder
