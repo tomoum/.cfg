@@ -38,24 +38,16 @@ else {
 Write-Host "Reloading environment variables..." -ForegroundColor Green
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 
-Write-Host "Upgrade Choco"
-choco upgrade chocolatey
-Write-Host "Upgrade powershell-core"
-choco upgrade powershell-core
 
-# Install Pretty icons
-Install-Module -Name Terminal-Icons -Repository PSGallery
-
-# Install pre release for list view of predictions
-Install-Module PSReadLine -AllowPrerelease -Force
 
 # Set CaskaydiaCove NF for default powershell window
 Set-ItemProperty -Path "Registry::HKEY_CURRENT_USER\Console" -Name "FaceName" -Value "CaskaydiaCove NF" -Type String;
 
-Update-Help
 
 .\choco_installs.ps1
+.\ps_installs.ps1
 
+Update-Help
 
 # #####################################
 # ARCHIVE

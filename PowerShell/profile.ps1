@@ -2,6 +2,9 @@
 using namespace System.Management.Automation
 using namespace System.Management.Automation.Language
 
+# set PowerShell to UTF-8
+[console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
+
 if ($host.Name -eq 'ConsoleHost') {
     Import-Module PSReadLine
 }
@@ -26,16 +29,19 @@ Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
 ################################################################
 # ALIASES & FUNCTIONS
 ################################################################
+
+# Display help table for all powershell key bindings
 Set-Alias -Name keys -Value Get-PSReadLineKeyHandler
+Set-Alias grep findstr
 
-Function Test-CommandExists {
-    Param ($command)
-    $oldPreference = $ErrorActionPreference
-    $ErrorActionPreference = "stop"
-    try { if (Get-Command $command) { RETURN $true } }
-    Catch { Write-Host "$command does not exist"; RETURN $false }
-    Finally { $ErrorActionPreference = $oldPreference }
-
+Function which ($command) {
+    try {
+        Get-Command -Name $command |
+        Select-Object -ExpandProperty Path
+    }
+    Catch {
+        Write-Host "{$command} does not exist";
+    }
 }
 
 function AddToPath {

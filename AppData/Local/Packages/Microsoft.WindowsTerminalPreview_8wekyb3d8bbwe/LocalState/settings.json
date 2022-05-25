@@ -27,6 +27,10 @@
             "keys": "ctrl+shift+f"
         },
         {
+            "command": "closePane",
+            "keys": "ctrl+w"
+        },
+        {
             "command": 
             {
                 "action": "splitPane",
@@ -34,10 +38,6 @@
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+d"
-        },
-        {
-            "command": "closePane",
-            "keys": "ctrl+w"
         }
     ],
     "copyFormatting": "none",
@@ -48,6 +48,7 @@
         "defaults": 
         {
             "colorScheme": "One Half Dark",
+            "elevate": true,
             "font": 
             {
                 "face": "CaskaydiaCove NF",
