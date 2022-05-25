@@ -9,17 +9,19 @@ if ($host.Name -eq 'ConsoleHost') {
     Import-Module PSReadLine
 }
 Import-Module -Name Terminal-Icons
+# git tab completion
 Import-Module -Name posh-git
+# Fuzzy finder
+Import-Module -Name PSFzf
 Import-Module -Name MT_Util -DisableNameChecking
 Import-Module -Name MT_EnvPaths -DisableNameChecking
-Import-Module -Name PSFzf
 
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineOption -EditMode Windows
 
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory 'Ctrl+r'
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\jandedobbeleer.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$Home\PowerShell\jandedobbeleer.muhab.json" | Invoke-Expression
 
 Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
     param($wordToComplete, $commandAst, $cursorPosition)
