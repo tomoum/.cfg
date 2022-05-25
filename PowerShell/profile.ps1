@@ -36,8 +36,11 @@ Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
 
 # Display help table for all powershell key bindings
 Set-Alias -Name keys -Value Get-PSReadLineKeyHandler
-Set-Alias grep findstr
+Set-Alias grep Select-String
+Set-Alias cat bat
 
+# Fuzzy Finder
+Set-Alias ff fzf
 Set-Alias fe Invoke-FuzzyEdit
 Set-Alias fgs Invoke-FuzzyGitStatus
 Set-Alias fh Invoke-FuzzyHistory

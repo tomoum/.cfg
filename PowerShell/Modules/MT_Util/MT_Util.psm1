@@ -17,6 +17,7 @@ function which ($command) {
 }
 
 function xargs {
+    # https://stackoverflow.com/questions/36428949/whats-the-equivalent-of-xargs-in-powershell
     param (
         [Parameter( Position = 0, Mandatory = $true, HelpMessage = 'commmand to be executed')]
         $command,
@@ -24,8 +25,13 @@ function xargs {
         [Parameter(ValueFromPipeline)]
         $val_from_pipeline
     )
-    Write-Host "[$command] -> Args: [$val_from_pipeline] "
-    , @($Extra) | ForEach-Object { &"$command" $_ }
+    # Write-Host "[$command] -> Args: [$val_from_pipeline] "
+
+    # Method 1: Command substitution
+    # &"$command" @($val_from_pipeline)
+
+    # Method 2:  True piping
+    , @($val_from_pipeline) | ForEach-Object { &"$command" $_ }
 }
 
 Export-ModuleMember -Function *
