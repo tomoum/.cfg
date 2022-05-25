@@ -4,11 +4,13 @@ using namespace System.Management.Automation.Language
 
 # set PowerShell to UTF-8
 [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
-
+# Module Imports
 if ($host.Name -eq 'ConsoleHost') {
     Import-Module PSReadLine
 }
 Import-Module -Name Terminal-Icons
+Import-Module -Name MT_Util -DisableNameChecking
+Import-Module -Name MT_EnvPaths
 
 Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle ListView
@@ -32,48 +34,18 @@ Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
 
 # Display help table for all powershell key bindings
 Set-Alias -Name keys -Value Get-PSReadLineKeyHandler
+
 Set-Alias grep findstr
 
-Function which ($command) {
-    try {
-        Get-Command -Name $command |
-        Select-Object -ExpandProperty Path
-    }
-    Catch {
-        Write-Host "{$command} does not exist";
-    }
-}
-
-function AddToPath {
-    param (
-        [string]$folder
-    )
-
-    Write-Host "Adding $folder to environment variables..." -ForegroundColor Yellow
-
-    $currentEnv = [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine).Trim(";");
-    $addedEnv = $currentEnv + ";$folder"
-    $trimmedEnv = (($addedEnv.Split(';') | Select-Object -Unique) -join ";").Trim(";")
-    [Environment]::SetEnvironmentVariable(
-        "Path",
-        $trimmedEnv,
-        [EnvironmentVariableTarget]::Machine)
-
-    Write-Host "Reloading environment variables..." -ForegroundColor Green
-    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
-}
-
-# The bare repo config/alias command
-# e.g
-# config status
-# config add -u (add all changes from tracked files)
-# config commit -m "message"
+# .cfg Bare Repo alias
 function config() {
     git --git-dir=$HOME\\.cfg\\ --work-tree=$HOME $args
 }
+
 function here() {
     explorer .
 }
+
 function profile() {
     code $Home\Powershell\profile.ps1
 }
