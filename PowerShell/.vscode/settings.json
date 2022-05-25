@@ -1,5 +1,5 @@
 {
-    "files.exclude": {
+    "search.exclude": {
         "**/Help": true,
         "**/PSReadLine": true,
         "**/Modules/Terminal-Icons": true,
