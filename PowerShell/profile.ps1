@@ -36,11 +36,16 @@ Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
 
 # Display help table for all powershell key bindings
 Set-Alias -Name keys -Value Get-PSReadLineKeyHandler
-
 Set-Alias grep findstr
 
+Set-Alias fe Invoke-FuzzyEdit
+Set-Alias fgs Invoke-FuzzyGitStatus
+Set-Alias fh Invoke-FuzzyHistory
+Set-Alias fkill Invoke-FuzzyKillProcess
+Set-Alias fd Invoke-FuzzySetLocation
+
 # .cfg Bare Repo alias
-function config() {
+function cfg() {
     git --git-dir=$HOME\\.cfg\\ --work-tree=$HOME $args
 }
 
@@ -428,11 +433,12 @@ Set-PSReadLineKeyHandler -Key Backspace `
 # MACROS
 # This is an example of a macro that you might use to execute a command.
 # This will add the command to history.
-Set-PSReadLineKeyHandler -Key Ctrl+Shift+b `
-    -BriefDescription BuildCurrentDirectory `
-    -LongDescription "Build the current directory" `
-    -ScriptBlock {
-    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
-    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("dotnet build")
-    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
-}
+
+# Set-PSReadLineKeyHandler -Key Ctrl+Shift+b `
+#     -BriefDescription BuildCurrentDirectory `
+#     -LongDescription "Build the current directory" `
+#     -ScriptBlock {
+#     [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
+#     [Microsoft.PowerShell.PSConsoleReadLine]::Insert("dotnet build")
+#     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+# }

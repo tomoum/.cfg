@@ -3,7 +3,7 @@
 # Date Created: 2022-05-23
 
 
-Function which ($command) {
+function which ($command) {
     $oldPreference = $ErrorActionPreference
     $ErrorActionPreference = "stop"
     try {
@@ -16,5 +16,16 @@ Function which ($command) {
     Finally { $ErrorActionPreference = $oldPreference }
 }
 
+function xargs {
+    param (
+        [Parameter( Position = 0, Mandatory = $true, HelpMessage = 'commmand to be executed')]
+        $command,
 
+        [Parameter(ValueFromPipeline)]
+        $val_from_pipeline
+    )
+    Write-Host "[$command] -> Args: [$val_from_pipeline] "
+    , @($Extra) | ForEach-Object { &"$command" $_ }
+}
 
+Export-ModuleMember -Function *
