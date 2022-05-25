@@ -22,10 +22,6 @@ Install-Module PSReadLine -AllowPrerelease -Force
 Write-Output "Install PSReadLine" -ForegroundColor Green
 Install-Module -Name z -Force
 
-# Fuzzy search
-Write-Output "Install PSFzf" -ForegroundColor Green
-Install-Module -Name PSFzf -Force
-
 Write-Output "-------------------------------" -ForegroundColor Green
 Write-Host "PowerShell Setup Complete" -ForegroundColor Green
 Write-Output "-------------------------------" -ForegroundColor Green

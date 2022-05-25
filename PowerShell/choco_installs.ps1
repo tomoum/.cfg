@@ -49,7 +49,8 @@ $apps =
 "pyenv-win",
 "vscode",
 "zoxide",
-"bat"
+"bat",
+"fzf"
 
 foreach ($app in $apps) {
     "Installing/Upgrading: [$app]"
