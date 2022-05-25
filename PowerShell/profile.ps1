@@ -10,7 +10,7 @@ if ($host.Name -eq 'ConsoleHost') {
 }
 Import-Module -Name Terminal-Icons
 Import-Module -Name MT_Util -DisableNameChecking
-Import-Module -Name MT_EnvPaths
+Import-Module -Name MT_EnvPaths -DisableNameChecking
 
 Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle ListView

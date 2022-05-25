@@ -1,12 +1,12 @@
 # Credits:
 # https://gist.github.com/mkropat/c1226e0cc2ca941b23a9#file-envpaths-psm1
 
-function syncpath{
+function sync-envpath{
     Write-Host "Reloading environment variables..." -ForegroundColor Green
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 }
 
-function addpath {
+function add-envpath {
     param(
         [Parameter(Mandatory=$true)]
         [string] $Path,
@@ -38,7 +38,7 @@ function addpath {
     }
 }
 
-function removepath {
+function remove-envpath {
     param(
         [Parameter(Mandatory=$true)]
         [string] $Path,
