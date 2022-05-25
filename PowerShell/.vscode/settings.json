@@ -1,0 +1,9 @@
+{
+    "files.exclude": {
+        "**/Help": true,
+        "**/PSReadLine": true,
+        "**/Modules/Terminal-Icons": true,
+        "**/Modules/PSFzf": true,
+        "**/Modules/z": true,
+    }
+}
