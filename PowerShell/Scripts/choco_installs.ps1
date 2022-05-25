@@ -8,7 +8,7 @@ Import-Module -Name MT_EnvPaths -DisableNameChecking
 # Self Elevate to Administrator
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
 
-function Test-CommandExists{
+function Test-CommandExists {
     Param ($command)
     $oldPreference = $ErrorActionPreference
     $ErrorActionPreference = "stop"
@@ -18,12 +18,10 @@ function Test-CommandExists{
 }
 
 # Install chocolatey
-if (Test-CommandExists ('choco'))
-{
+if (Test-CommandExists ('choco')) {
     Write-Host "Choco is already installed, skip installation."
 }
-else
-{
+else {
     Write-Host "------------------------------------" -ForegroundColor Green
     Write-Host "Installing Chocolate for Windows..." -ForegroundColor Green
     Write-Host "------------------------------------" -ForegroundColor Green
@@ -41,7 +39,8 @@ $apps =
 "chocolatey",
 "cascadia-code-nerd-font",
 "oh-my-posh",
-"git"
+"poshgit",
+"git",
 "gh",
 "7zip",
 "adobereader",

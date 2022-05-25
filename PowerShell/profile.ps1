@@ -9,9 +9,10 @@ if ($host.Name -eq 'ConsoleHost') {
     Import-Module PSReadLine
 }
 Import-Module -Name Terminal-Icons
+Import-Module -Name posh-git
 Import-Module -Name MT_Util -DisableNameChecking
 Import-Module -Name MT_EnvPaths -DisableNameChecking
-Import-Module PSFzf
+Import-Module -Name PSFzf
 
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 Set-PSReadLineOption -PredictionViewStyle ListView
