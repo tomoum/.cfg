@@ -10,7 +10,7 @@ if ($host.Name -eq 'ConsoleHost') {
 }
 Import-Module -Name Terminal-Icons
 # git tab completion
-Import-Module -Name posh-git
+# Import-Module -Name posh-git
 # Fuzzy finder
 Import-Module -Name PSFzf
 Import-Module -Name MT_Util -DisableNameChecking
