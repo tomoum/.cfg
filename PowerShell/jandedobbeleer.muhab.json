@@ -5,26 +5,26 @@
       "alignment": "left",
       "segments": [
         {
-          "background": "#c386f1",
-          "foreground": "#ffffff",
-          "leading_diamond": "\ue0b6",
+          "type": "session",
           "style": "diamond",
-          "template": " {{ .UserName }} ",
+          "leading_diamond": "\ue0b6",
           "trailing_diamond": "\ue0b0",
-          "type": "session"
+          "foreground": "#ffffff",
+          "background": "#c386f1",
+          "template": "{{ if .SSHSession }}\uf817 {{ end }}{{ .UserName }}@{{ .HostName }}"
         },
         {
+          "type": "path",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
           "background": "#ff479c",
           "foreground": "#ffffff",
-          "powerline_symbol": "\ue0b0",
+          "template": " \uf74a  {{ .Path }} ",
           "properties": {
             "folder_separator_icon": " \ue0b1 ",
             "home_icon": "~",
             "style": "folder"
-          },
-          "style": "powerline",
-          "template": " \uf74a  {{ .Path }} ",
-          "type": "path"
+          }
         },
         {
           "background": "#fffb38",
