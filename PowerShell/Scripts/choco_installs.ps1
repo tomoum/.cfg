@@ -31,15 +31,15 @@ else {
 # Reload User and System Environment Paths
 sync-envpath
 
-Write-Output "-------------------------------" -ForegroundColor Green
+Write-Host "-------------------------------" -ForegroundColor Green
 Write-Host "Install & Upgrade All Apps" -ForegroundColor Green
-Write-Output "-------------------------------" -ForegroundColor Green
+Write-Host "-------------------------------" -ForegroundColor Green
 
 $apps =
+# Terminal Apps/Setup
 "chocolatey",
 "cascadia-code-nerd-font",
 "oh-my-posh",
-"poshgit",
 "git",
 "gh",
 "7zip",
@@ -47,7 +47,6 @@ $apps =
 "powershell-core",
 "pyenv-win",
 "vscode",
-"zoxide",
 "bat",
 "fzf"
 
@@ -56,6 +55,6 @@ foreach ($app in $apps) {
     choco upgrade $app -y
 }
 
-Write-Output "-------------------------------" -ForegroundColor Green
-Write-Output "Installation Complete" -ForegroundColor Green
-Write-Output "-------------------------------" -ForegroundColor Green
+Write-Host "-------------------------------" -ForegroundColor Green
+Write-Host "Installation Complete" -ForegroundColor Green
+Write-Host "-------------------------------" -ForegroundColor Green

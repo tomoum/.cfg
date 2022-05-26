@@ -2,20 +2,22 @@
 using namespace System.Management.Automation
 using namespace System.Management.Automation.Language
 
-# set PowerShell to UTF-8
+# Set PowerShell to UTF-8 the default is UTF-16
 [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
-# Module Imports
+
+# MODULE IMPORTS
 if ($host.Name -eq 'ConsoleHost') {
     Import-Module PSReadLine
 }
 Import-Module -Name Terminal-Icons
-# git tab completion
-# Import-Module -Name posh-git
-# Fuzzy finder
-Import-Module -Name PSFzf
+Import-Module -Name PSFzf # Fuzzy finder
+# CUSTOM MODULES IMPORTS
 Import-Module -Name MT_Util -DisableNameChecking
 Import-Module -Name MT_EnvPaths -DisableNameChecking
 
+################################################################
+# MODULE SETTINGS
+################################################################
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineOption -EditMode Windows
@@ -23,6 +25,9 @@ Set-PSReadLineOption -EditMode Windows
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory 'Ctrl+r'
 oh-my-posh init pwsh --config "$Home\PowerShell\jandedobbeleer.muhab.json" | Invoke-Expression
 
+################################################################
+# AUTO COMPLETE HANDLERS
+################################################################
 Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
     param($wordToComplete, $commandAst, $cursorPosition)
     [Console]::InputEncoding = [Console]::OutputEncoding = $OutputEncoding = [System.Text.Utf8Encoding]::new()
@@ -64,14 +69,9 @@ function profile() {
 }
 
 
-
 ################################################################
 # KEYBOARD BINDINGS
 ################################################################
-# NOTE:
-# To list all current key bindings run:
-# Get-PSReadLineKeyHandler
-
 
 # Searching for commands with up/down arrow is really handy.  The
 # option "moves to end" is useful if you want the cursor at the end
