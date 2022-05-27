@@ -60,6 +60,8 @@ function cfg() {
     git --git-dir=$HOME\\.cfg\\ --work-tree=$HOME $args
 }
 
+Set-Alias config cfg
+
 function here() {
     explorer .
 }

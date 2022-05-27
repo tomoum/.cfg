@@ -25,7 +25,7 @@ else {
     Write-Host "------------------------------------" -ForegroundColor Green
     Write-Host "Installing Chocolate for Windows..." -ForegroundColor Green
     Write-Host "------------------------------------" -ForegroundColor Green
-    Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+    Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
 
 # Reload User and System Environment Paths
@@ -38,22 +38,44 @@ Write-Host "-------------------------------" -ForegroundColor Green
 $apps =
 # Terminal Apps/Setup
 "chocolatey",
+"powershell-core",
 "cascadia-code-nerd-font",
 "oh-my-posh",
-"git",
-"gh",
-"7zip",
-"adobereader",
-"powershell-core",
-"pyenv-win",
-"vscode",
 "bat",
 "fzf"
+"chocolateygui"
+# Essentials
+"git",
+"gh",
+"vscode",
+"notepadplusplus",
+"7zip",
+"grammarly-for-windows",
+"adobereader",
+"greenshot",
+"powertoys",
+"ditto",
+"docker-desktop",
+"docker-cli",
+"pyenv-win",
+"teraterm",
+# "drawio",
+# Personal PC
+"spotify",
+"whatsapp",
+"rpi-imager",
+"logitechgaming", # Mouse
+"nrfjprog",
+"easytune6", # GPU
+"zoom",
+"zoom-outlook"
 
 foreach ($app in $apps) {
     "Installing/Upgrading: [$app]"
     choco upgrade $app -y
 }
+
+sync-envpath
 
 Write-Host "-------------------------------" -ForegroundColor Green
 Write-Host "Installation Complete" -ForegroundColor Green
