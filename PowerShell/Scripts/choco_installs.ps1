@@ -42,8 +42,7 @@ $apps =
 "cascadia-code-nerd-font",
 "oh-my-posh",
 "bat",
-"fzf"
-"chocolateygui"
+"chocolateygui",
 # Essentials
 "git",
 "gh",
@@ -61,7 +60,6 @@ $apps =
 "teraterm",
 # "drawio",
 # Personal PC
-"spotify",
 "whatsapp",
 "rpi-imager",
 "logitechgaming", # Mouse

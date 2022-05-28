@@ -16,12 +16,18 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 # MISC
 # #####################################
 
-# Start the ssh agent service
 Write-Output "-------------------------------" -ForegroundColor Green
 Write-Output "Start SSH Agent Service" -ForegroundColor Green
 Write-Output "-------------------------------" -ForegroundColor Green
 Get-Service -Name ssh-agent | Set-Service -StartupType Manual
 
+Write-Output "-------------------------------" -ForegroundColor Green
+Write-Output "WSL Installs" -ForegroundColor Green
+Write-Output "-------------------------------" -ForegroundColor Green
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+wsl --install Ubuntu-20.04
+wsl --update
 
 Write-Output "-------------------------------" -ForegroundColor Green
 Write-Output "Changing Registry" -ForegroundColor Green

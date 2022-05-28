@@ -44,8 +44,10 @@ Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
 
 # Display help table for all powershell key bindings
 Set-Alias -Name keys -Value Get-PSReadLineKeyHandler
+
 Set-Alias grep Select-String
-Set-Alias cat bat
+# better cat functionality
+# Set-Alias cat bat
 
 # Fuzzy Finder
 Set-Alias ff fzf
@@ -61,6 +63,7 @@ function cfg() {
 }
 
 Set-Alias config cfg
+config config --local status.showUntrackedFiles no
 
 function here() {
     explorer .

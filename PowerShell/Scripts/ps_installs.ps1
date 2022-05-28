@@ -11,6 +11,8 @@ Write-Host "-------------------------------" -ForegroundColor Green
 New-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders' Personal -Value $mt_ps_dir -Type ExpandString -Force
 $profile | Select-Object *
 
+Set-PSRepository PSGallery
+
 # Pretty terminal file/folder icons
 Write-Host "Install Terminal-Icons" -ForegroundColor Green
 Install-Module -Name Terminal-Icons -Repository PSGallery
@@ -22,6 +24,10 @@ Install-Module PSReadLine -AllowPrerelease -Force
 # Directory quick shifting
 Write-Host "Install zoxide" -ForegroundColor Green
 Install-Module -Name z -Repository PSGallery -Force
+
+# fuzzy finder
+Write-Host "Install Fuzzy Finder" -ForegroundColor Green
+Install-Module -Name PSFzf
 
 # git auto completion
 # Write-Host "Install posh-git" -ForegroundColor Green
