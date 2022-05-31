@@ -56,7 +56,6 @@ $apps =
 "ditto",
 "docker-desktop",
 "docker-cli",
-"pyenv-win",
 "teraterm",
 # "drawio",
 # Personal PC
@@ -73,6 +72,19 @@ foreach ($app in $apps) {
     choco upgrade $app -y
 }
 
+function install_python() {
+    choco install pyenv-win -y
+    [System.Environment]::SetEnvironmentVariable('PYENV', $env:USERPROFILE + "\.pyenv\pyenv-win\", "User")
+
+    [System.Environment]::SetEnvironmentVariable('PYENV_ROOT', $env:USERPROFILE + "\.pyenv\pyenv-win\", "User")
+
+    [System.Environment]::SetEnvironmentVariable('PYENV_HOME', $env:USERPROFILE + "\.pyenv\pyenv-win\", "User")
+
+    add-envpath -path "$env:USERPROFILE\.pyenv\pyenv-win\bin" -container "User"
+    add-envpath -path "$env:USERPROFILE\.pyenv\pyenv-win\shims" -container "User"
+}
+
+install_python
 sync-envpath
 
 Write-Host "-------------------------------" -ForegroundColor Green
