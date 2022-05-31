@@ -65,8 +65,14 @@ function cfg() {
 Set-Alias config cfg
 config config --local status.showUntrackedFiles no
 
+function gitconfig() {
+    git config --edit --global
+}
 function here() {
     explorer .
+}
+function home() {
+    Set-Location ~
 }
 
 function profile() {
