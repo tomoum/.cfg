@@ -23,7 +23,7 @@ Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineOption -EditMode Windows
 
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory 'Ctrl+r'
-oh-my-posh init pwsh --config "$Home\PowerShell\jandedobbeleer.muhab.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$Home\oh-my-posh-config.json" | Invoke-Expression
 
 ################################################################
 # AUTO COMPLETE HANDLERS
