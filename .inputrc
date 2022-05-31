@@ -1,0 +1,5 @@
+
+$if clink           # begin clink-only section
+
+"\t":               old-menu-complete               # Tab
+$endif              # end clink-only section
