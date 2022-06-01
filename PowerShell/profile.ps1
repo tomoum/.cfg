@@ -65,6 +65,9 @@ function cfg() {
 Set-Alias config cfg
 config config --local status.showUntrackedFiles no
 
+function mywsl(){
+    cd \\wsl.localhost\Ubuntu-20.04
+}
 function gitconfig() {
     git config --edit --global
 }

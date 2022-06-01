@@ -43,6 +43,7 @@ $apps =
 "oh-my-posh",
 "bat",
 "chocolateygui",
+"sudo",
 # Essentials
 "git",
 "gh",
