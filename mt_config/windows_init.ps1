@@ -13,6 +13,7 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 # #####################################
 .\ps_installs.ps1
 .\choco_installs.ps1
+.\init_cmd.ps1
 
 # #####################################
 # MISC
