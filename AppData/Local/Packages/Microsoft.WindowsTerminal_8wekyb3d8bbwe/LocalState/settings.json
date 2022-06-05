@@ -57,6 +57,14 @@
                 "source": "Windows.Terminal.PowershellCore"
             },
             {
+                "name": "Raspberry Pi 1",
+                "commandline": "ssh muhab@rpi1",
+                "guid": "{81a06f52-383c-4e9e-8b3b-efedcd170bdb}",
+                "hidden": false,
+                "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
+                "startingDirectory": "~"
+            },
+            {
                 "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
                 "hidden": false,
                 "name": "Ubuntu-20.04",
