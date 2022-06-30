@@ -58,6 +58,8 @@ $apps =
 "docker-desktop",
 "docker-cli",
 "teraterm",
+# Security
+"pestudio",
 # "drawio",
 # Personal PC
 "whatsapp",
