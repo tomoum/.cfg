@@ -49,6 +49,8 @@ Set-Alias grep Select-String
 # better cat functionality
 # Set-Alias cat bat
 
+Set-Alias -Name cd -Value z -option AllScope
+
 # Fuzzy Finder
 Set-Alias ff fzf
 Set-Alias fe Invoke-FuzzyEdit
@@ -65,8 +67,8 @@ function cfg() {
 Set-Alias config cfg
 config config --local status.showUntrackedFiles no
 
-function mywsl(){
-    cd \\wsl.localhost\Ubuntu-20.04
+function mywsl() {
+    Set-Location \\wsl.localhost\Ubuntu-20.04
 }
 function gitconfig() {
     git config --edit --global
