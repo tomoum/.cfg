@@ -1,6 +1,7 @@
-# Description: My apps install with choco
-# Author: Muhab Tomoum
+# Description: Installing https://chocolatey.org/ the app manager and
+#              using it to install all my favourite windows apps
 # Date Created: 2022-05-23
+# Author: Muhab Tomoum
 
 Import-Module -Name MT_Util -DisableNameChecking
 Import-Module -Name MT_EnvPaths -DisableNameChecking
@@ -58,10 +59,12 @@ $apps =
 "docker-desktop",
 "docker-cli",
 "teraterm",
+"virtualbox",
 # Security
-"pestudio",
-# "drawio",
+# "pestudio", #inspect exe binaries
+
 # Personal PC
+# "drawio",
 "whatsapp",
 "rpi-imager",
 "logitechgaming", # Mouse
