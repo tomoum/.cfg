@@ -1,7 +1,8 @@
 # Description: This is my top level file for setting up a new windows machine
 # Author: Muhab Tomoum
 # Date Created: 2022-05-23
-# INSTRUCTIONS:
+
+#   INSTRUCTIONS:
 #   Please read the descriptions of each of the top level files
 #   in the "INSTALLATION & CONFIGURATION" section below then
 #   comment out the scripts you dont need. Then run this script.
@@ -39,7 +40,6 @@ Set-ExecutionPolicy AllSigned -Scope CurrentUser
 # care of security
 .\install_security.ps1
 
-
 Write-Output "-------------------------------" -ForegroundColor Green
 Write-Output "Download & Install Free version of Seer.exe" -ForegroundColor Green
 Write-Output "-------------------------------" -ForegroundColor Green
@@ -58,7 +58,6 @@ Write-Output "-------------------------------" -ForegroundColor Green
 Write-Output "Update Poweshell Help Manuals" -ForegroundColor Green
 Write-Output "-------------------------------" -ForegroundColor Green
 Update-Help
-
 
 Write-Output "-------------------------------" -ForegroundColor Green
 Write-Output "Setup Complete." -ForegroundColor Green

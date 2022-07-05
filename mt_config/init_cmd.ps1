@@ -1,3 +1,8 @@
+# Description: Installs clink to power up your command prompt exeperience with features
+#              like command autocompletion and color highlighting
+#              https://chrisant996.github.io/clink/
+# Author: Muhab Tomoum
+# Date Created: 2022-05-23
 
 Set-ItemProperty -Path "Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Command Processor" -Name "AutoRun" -Value "%USERPROFILE%\.cmd_profile.bat" -Type String;
 

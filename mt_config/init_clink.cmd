@@ -1,5 +1,5 @@
 
 @REM Add path to search for scripts
-clink installscripts %USERPROFILE%\.clink
+clink.exe installscripts %USERPROFILE%\.clink
 
 
