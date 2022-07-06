@@ -1,65 +1,64 @@
-
 [user]
-    name = Muhab Tomoum
-    email = muhabtomoum@gmail.com
+name = Muhab Tomoum
+email = muhab_tomoum@selinc.com
 [core]
-    excludesfile = "$HOME/.gitignore_global"
-    autocrlf = true
-    editor = code --wait
+excludesfile = "$HOME/.gitignore_global"
+autocrlf = true
+editor = code --wait
 [diff]
-  tool = vscode
+tool = vscode
 [difftool "vscode"]
-  cmd = code --wait --diff $LOCAL $REMOTE
+cmd = code --wait --diff $LOCAL $REMOTE
 [merge]
-  tool = vscode
+tool = vscode
 [mergetool "vscode"]
-  cmd = code --wait $MERGED
+cmd = code --wait $MERGED
 [color]
-    ui = true
+ui = true
 
 [alias]
-    # List things
-    tags = "tag -l"
-    branches = "branch -a"
-    remotes = "remote -v"
+# List things
+tags = "tag -l"
+branches = "branch -a"
+remotes = "remote -v"
 
-    # Shorten common commands
-    co = "checkout"
-    st = "status"
-    br = "branch"
-    ci = "commit"
-    d = "diff"
+# Shorten common commands
+co = "checkout"
+st = "status"
+br = "branch"
+ci = "commit"
+d = "diff"
 
-    # Log that shows titles of last 16 commits
-    l = "log -16 --color=always --all --topo-order --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+# Log that shows titles of last 16 commits
+l = "log -16 --color=always --all --topo-order --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 
-    # Log that starts a pager with titles of all the commits in your tree
-    ll = log --color=always --all --topo-order --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+# Log that starts a pager with titles of all the commits in your tree
+ll = log --color=always --all --topo-order --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
-    # Log that shows the last 10 commits as a graph
-    lg = "log -10 --color=always --all --graph --topo-order --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+# Log that shows the last 10 commits as a graph
+lg = "log -10 --color=always --all --graph --topo-order --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 
-    # Log that shows all commits as a graph (using a pager)
-    lgl = "log --color=always --all --graph --topo-order --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+# Log that shows all commits as a graph (using a pager)
+lgl = "log --color=always --all --graph --topo-order --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
-    # Show outgoing commits
-    out = "log @{u}.."
+# Show outgoing commits
+out = "log @{u}.."
 
-    # Print the title of the current branch; sometimes useful for scripting
-    currentbranch = "!git branch --contains HEAD | grep '*' | tr -s ' ' | cut -d ' ' -f2"
+# Print the title of the current branch; sometimes useful for scripting
+currentbranch = "!git branch --contains HEAD | grep '*' | tr -s ' ' | cut -d ' ' -f2"
 
-    # Better diffs for prose
-    wdiff = "diff --color-words"
+# Better diffs for prose
+wdiff = "diff --color-words"
 
-    # Safer pulls; don't do anything other than a fast forward on merge
-    pull = "pull --ff-only"
+# Safer pulls; don't do anything other than a fast forward on merge
+pull = "pull --ff-only"
 
-    # Amend last commit without modifying commit message
-    # amend = "!git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend"
+# Amend last commit without modifying commit message
+# amend = "!git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend"
 
-    # Create a commit that will be automatically squashed as a fixup when you
-    # run `git rebase --autosquash`
-    # fixup = "commit --fixup=HEAD"
+# Create a commit that will be automatically squashed as a fixup when you
+# run `git rebase --autosquash`
+# fixup = "commit --fixup=HEAD"
 
 [init]
-    defaultBranch = main
+defaultBranch = main

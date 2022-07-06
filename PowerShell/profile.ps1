@@ -11,6 +11,9 @@ if ($host.Name -eq 'ConsoleHost') {
 }
 Import-Module -Name Terminal-Icons
 Import-Module -Name PSFzf # Fuzzy finder
+# BUGFIX: if you cant import PSFzf when installed using PSGallery try
+# installing it with choco
+
 # CUSTOM MODULES IMPORTS
 Import-Module -Name MT_Util -DisableNameChecking
 Import-Module -Name MT_EnvPaths -DisableNameChecking
