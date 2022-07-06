@@ -38,13 +38,19 @@ Set-ExecutionPolicy AllSigned -Scope CurrentUser
 # This install security software you probably want to comment this out if you
 # are running on a company machine in which case the system admins will take
 # care of security
-.\install_security.ps1
+# .\install_security.ps1
 
 Write-Output "-------------------------------" -ForegroundColor Green
 Write-Output "Download & Install Free version of Seer.exe" -ForegroundColor Green
 Write-Output "-------------------------------" -ForegroundColor Green
-Invoke-WebRequest -Uri "https://sourceforge.net/projects/ccseer/files/Seer-0.8.1.exe/download" -OutFile "$pwd/Seer-0.8.1.exe"
+Invoke-WebRequest -Uri "https://sourceforge.net/settings/mirror_choices?projectname=ccseer&filename=Seer-0.8.1.exe&selected=cfhcable" -OutFile "$pwd/Seer-0.8.1.exe"
 .\Seer-0.8.1.exe
+
+Write-Output "-------------------------------" -ForegroundColor Green
+Write-Output "Download & Install ticktick - task managment app" -ForegroundColor Green
+Write-Output "-------------------------------" -ForegroundColor Green
+Invoke-WebRequest -Uri "https://ticktick.com/static/getApp/download?type=win64" -OutFile "$pwd/tick_win_setup_release_x64.exe"
+.\tick_win_setup_release_x64.exe
 
 # #####################################
 # MISC
@@ -55,9 +61,9 @@ Write-Output "-------------------------------" -ForegroundColor Green
 Get-Service -Name ssh-agent | Set-Service -StartupType Manual
 
 Write-Output "-------------------------------" -ForegroundColor Green
-Write-Output "Update Poweshell Help Manuals" -ForegroundColor Green
+Write-Output "Hey dont forget to update your Poweshell-Core Help Manuals" -ForegroundColor Red
+Write-Output "run: Update-Help" -ForegroundColor Red
 Write-Output "-------------------------------" -ForegroundColor Green
-Update-Help
 
 Write-Output "-------------------------------" -ForegroundColor Green
 Write-Output "Setup Complete." -ForegroundColor Green
