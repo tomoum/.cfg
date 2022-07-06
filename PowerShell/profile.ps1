@@ -9,10 +9,11 @@ using namespace System.Management.Automation.Language
 if ($host.Name -eq 'ConsoleHost') {
     Import-Module PSReadLine
 }
+
 Import-Module -Name Terminal-Icons
 Import-Module -Name PSFzf # Fuzzy finder
 # BUGFIX: if you cant import PSFzf when installed using PSGallery try
-# installing it with choco
+# installing it with chocolatey
 
 # CUSTOM MODULES IMPORTS
 Import-Module -Name MT_Util -DisableNameChecking
@@ -24,7 +25,6 @@ Import-Module -Name MT_EnvPaths -DisableNameChecking
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineOption -EditMode Windows
-
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory 'Ctrl+r'
 oh-my-posh init pwsh --config "$Home\oh-my-posh-config.json" | Invoke-Expression
 
@@ -47,14 +47,8 @@ Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
 
 # Display help table for all powershell key bindings
 Set-Alias -Name keys -Value Get-PSReadLineKeyHandler
-
 Set-Alias grep Select-String
-# better cat functionality
-# Set-Alias cat bat
-
 Set-Alias -Name cd -Value z -option AllScope
-
-# Fuzzy Finder
 Set-Alias ff fzf
 Set-Alias fe Invoke-FuzzyEdit
 Set-Alias fgs Invoke-FuzzyGitStatus
@@ -62,12 +56,12 @@ Set-Alias fh Invoke-FuzzyHistory
 Set-Alias fkill Invoke-FuzzyKillProcess
 Set-Alias fd Invoke-FuzzySetLocation
 
-# .cfg Bare Repo alias
 function cfg() {
     git --git-dir=$HOME\\.cfg\\ --work-tree=$HOME $args
 }
 
 Set-Alias config cfg
+# Do not display untracked files in my current working directory when i do `cfg status`
 config config --local status.showUntrackedFiles no
 
 function mywsl() {

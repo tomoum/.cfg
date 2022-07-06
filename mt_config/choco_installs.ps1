@@ -46,6 +46,7 @@ $apps =
 "cascadia-code-nerd-font",
 "oh-my-posh",
 "bat",
+"fzf",
 # Essentials
 "git",
 "gh",
