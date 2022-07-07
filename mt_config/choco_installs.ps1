@@ -51,6 +51,7 @@ $apps =
 "git",
 "gh",
 "vscode",
+"obsidian",
 "notepadplusplus",
 "bitwarden",
 "7zip",

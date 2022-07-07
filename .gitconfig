@@ -62,3 +62,5 @@ pull = "pull --ff-only"
 
 [init]
 defaultBranch = main
+[push]
+autoSetupRemote = true

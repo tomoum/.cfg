@@ -56,6 +56,10 @@ Set-Alias fh Invoke-FuzzyHistory
 Set-Alias fkill Invoke-FuzzyKillProcess
 Set-Alias fd Invoke-FuzzySetLocation
 
+function la() {
+    Get-ChildItem -Force
+}
+
 function cfg() {
     git --git-dir=$HOME\\.cfg\\ --work-tree=$HOME $args
 }
@@ -79,6 +83,9 @@ function home() {
 
 function profile() {
     code $Home\Powershell\profile.ps1
+}
+function sshconfig() {
+    code $Home\.ssh\config
 }
 
 
