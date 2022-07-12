@@ -55,6 +55,11 @@ function work() {
     Set-Location "C:\work"
 }
 
+function al() {
+    Set-Location "C:\work\verification\saif-assist\sel-ver-saif"
+}
+################################################################
+
 # Display help table for all powershell key bindings
 Set-Alias -Name keys -Value Get-PSReadLineKeyHandler
 Set-Alias grep Select-String
@@ -68,6 +73,10 @@ Set-Alias fd Invoke-FuzzySetLocation
 
 function la() {
     Get-ChildItem -Force
+}
+
+function cwd() {
+    (Get-Location).Path | clip
 }
 
 function cfg() {
