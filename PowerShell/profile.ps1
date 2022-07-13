@@ -91,8 +91,8 @@ function gitco {
             })]
         [string] $branch
     )
-    $branch = $branch.Name.Replace("origin/", "")
-    git checkout $branch;
+    $branch = $branch.Replace("origin/", "")
+    git checkout ([regex]::escape($branch))
 }
 function gitdel {
     # git delete local branch tab complete
