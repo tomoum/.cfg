@@ -15,6 +15,7 @@ Import-Module -Name PSFzf # Fuzzy finder
 # BUGFIX: if you cant import PSFzf when installed using PSGallery try
 # installing it with chocolatey
 
+
 # CUSTOM MODULES IMPORTS
 Import-Module -Name MT_Util -DisableNameChecking
 Import-Module -Name MT_EnvPaths -DisableNameChecking
@@ -70,6 +71,49 @@ Set-Alias fgs Invoke-FuzzyGitStatus
 Set-Alias fh Invoke-FuzzyHistory
 Set-Alias fkill Invoke-FuzzyKillProcess
 Set-Alias fd Invoke-FuzzySetLocation
+
+# GIT
+function gitco {
+    # git checkout from local or remote tab complete
+    param(
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [ArgumentCompleter({
+                param($pCmd, $pParam, $pWord, $pAst, $pFakes)
+
+                $branchList = (git branch -a --format='%(refname:short)')
+
+                if ([string]::IsNullOrWhiteSpace($pWord)) {
+                    return $branchList;
+                }
+
+                $branchList | Select-String "$pWord"
+            })]
+        [string] $branch
+    )
+    $branch = $branch.Name.Replace("origin/", "")
+    git checkout $branch;
+}
+function gitdel {
+    # git delete local branch tab complete
+    param(
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [ArgumentCompleter({
+                param($pCmd, $pParam, $pWord, $pAst, $pFakes)
+
+                $branchList = (git branch --format='%(refname:short)')
+
+                if ([string]::IsNullOrWhiteSpace($pWord)) {
+                    return $branchList;
+                }
+
+                $branchList | Select-String "$pWord"
+            })]
+        [string] $branch
+    )
+    git branch -d $branch;
+}
 
 function la() {
     Get-ChildItem -Force

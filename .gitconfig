@@ -15,6 +15,12 @@ tool = vscode
 cmd = code --wait $MERGED
 [color]
 ui = true
+[init]
+defaultBranch = main
+[push]
+autoSetupRemote = true
+[checkout]
+defaultRemote = origin
 
 [alias]
 # List things
@@ -59,8 +65,3 @@ pull = "pull --ff-only"
 # Create a commit that will be automatically squashed as a fixup when you
 # run `git rebase --autosquash`
 # fixup = "commit --fixup=HEAD"
-
-[init]
-defaultBranch = main
-[push]
-autoSetupRemote = true
