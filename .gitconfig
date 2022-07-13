@@ -21,6 +21,8 @@ defaultBranch = main
 autoSetupRemote = true
 [checkout]
 defaultRemote = origin
+[fetch]
+prune = true
 
 [alias]
 # List things
