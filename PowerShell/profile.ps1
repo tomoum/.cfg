@@ -9,8 +9,13 @@ using namespace System.Management.Automation.Language
 if ($host.Name -eq 'ConsoleHost') {
     Import-Module PSReadLine
 }
+
 Import-Module -Name Terminal-Icons
 Import-Module -Name PSFzf # Fuzzy finder
+# BUGFIX: if you cant import PSFzf when installed using PSGallery try
+# installing it with chocolatey
+
+
 # CUSTOM MODULES IMPORTS
 Import-Module -Name MT_Util -DisableNameChecking
 Import-Module -Name MT_EnvPaths -DisableNameChecking
@@ -21,7 +26,6 @@ Import-Module -Name MT_EnvPaths -DisableNameChecking
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineOption -EditMode Windows
-
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory 'Ctrl+r'
 oh-my-posh init pwsh --config "$Home\oh-my-posh-config.json" | Invoke-Expression
 
@@ -41,17 +45,26 @@ Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
 ################################################################
 # ALIASES & FUNCTIONS
 ################################################################
+# WORK
+function clonev() {
+    git clone "ssh://git@bitbucket.metro.ad.selinc.com:7999/icon/sel-8000-verification-repo.git" $args
+}
+function sm() {
+    Set-Location "C:\SEL8030_Development"
+}
+function work() {
+    Set-Location "C:\work"
+}
+
+function al() {
+    Set-Location "C:\work\verification\saif-assist\sel-ver-saif"
+}
+################################################################
 
 # Display help table for all powershell key bindings
 Set-Alias -Name keys -Value Get-PSReadLineKeyHandler
-
 Set-Alias grep Select-String
-# better cat functionality
-# Set-Alias cat bat
-
 Set-Alias -Name cd -Value z -option AllScope
-
-# Fuzzy Finder
 Set-Alias ff fzf
 Set-Alias fe Invoke-FuzzyEdit
 Set-Alias fgs Invoke-FuzzyGitStatus
@@ -59,12 +72,63 @@ Set-Alias fh Invoke-FuzzyHistory
 Set-Alias fkill Invoke-FuzzyKillProcess
 Set-Alias fd Invoke-FuzzySetLocation
 
-# .cfg Bare Repo alias
+# GIT
+function gitco {
+    # git checkout from local or remote tab complete
+    param(
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [ArgumentCompleter({
+                param($pCmd, $pParam, $pWord, $pAst, $pFakes)
+
+                $branchList = (git branch -a --format='%(refname:short)')
+
+                if ([string]::IsNullOrWhiteSpace($pWord)) {
+                    return $branchList;
+                }
+
+                $branchList | Select-String "$pWord"
+            })]
+        [string] $branch
+    )
+    $branch = $branch.Replace("origin/", "")
+    git checkout ([regex]::escape($branch))
+}
+function gitdel {
+    # git delete local branch tab complete
+    param(
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [ArgumentCompleter({
+                param($pCmd, $pParam, $pWord, $pAst, $pFakes)
+
+                $branchList = (git branch --format='%(refname:short)')
+
+                if ([string]::IsNullOrWhiteSpace($pWord)) {
+                    return $branchList;
+                }
+
+                $branchList | Select-String "$pWord"
+            })]
+        [string] $branch
+    )
+    git branch -d $branch;
+}
+
+function la() {
+    Get-ChildItem -Force
+}
+
+function cwd() {
+    (Get-Location).Path | clip
+}
+
 function cfg() {
     git --git-dir=$HOME\\.cfg\\ --work-tree=$HOME $args
 }
 
 Set-Alias config cfg
+# Do not display untracked files in my current working directory when i do `cfg status`
 config config --local status.showUntrackedFiles no
 
 function mywsl() {
@@ -82,6 +146,9 @@ function home() {
 
 function profile() {
     code $Home\Powershell\profile.ps1
+}
+function sshconfig() {
+    code $Home\.ssh\config
 }
 
 

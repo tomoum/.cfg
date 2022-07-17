@@ -27,7 +27,8 @@ Install-Module -Name z -Repository PSGallery -Force
 
 # Fuzzy finder
 Write-Host "Install Fuzzy Finder" -ForegroundColor Green
-Install-Module -Name PSFzf
+Install-Module -Name PSFzf -Repository PSGallery
+# Note: Sometimes doesnt work and you will have to install with choco instead
 
 # Git auto completion
 # Note: I commented this out because it slows down the shell load times

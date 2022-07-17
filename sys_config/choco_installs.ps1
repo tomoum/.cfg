@@ -32,6 +32,8 @@ else {
 # Reload User and System Environment Paths
 sync-envpath
 
+choco feature enable -n=allowGlobalConfirmation
+
 Write-Host "-------------------------------" -ForegroundColor Green
 Write-Host "Install & Upgrade All Apps" -ForegroundColor Green
 Write-Host "-------------------------------" -ForegroundColor Green
@@ -39,39 +41,44 @@ Write-Host "-------------------------------" -ForegroundColor Green
 $apps =
 # Terminal Apps/Setup
 "chocolatey",
+"microsoft-windows-terminal",
 "powershell-core",
 "cascadia-code-nerd-font",
 "oh-my-posh",
 "bat",
-"chocolateygui",
-"sudo",
+"fzf",
 # Essentials
 "git",
 "gh",
 "vscode",
+"obsidian",
 "notepadplusplus",
+"bitwarden",
 "7zip",
 "grammarly-for-windows",
 "adobereader",
 "greenshot",
 "powertoys",
+"devtoys",
 "ditto",
 "docker-desktop",
 "docker-cli",
 "teraterm",
 "virtualbox",
+# Work specific
+"wireshark"
+
 # Security
 # "pestudio", #inspect exe binaries
-
 # Personal PC
 # "drawio",
-"whatsapp",
-"rpi-imager",
-"logitechgaming", # Mouse
-"nrfjprog",
-"easytune6", # GPU
-"zoom",
-"zoom-outlook"
+# "whatsapp",
+# "rpi-imager",
+# "logitechgaming", # Mouse
+# "nrfjprog",
+# "easytune6", # GPU
+# "zoom",
+# "zoom-outlook"
 
 foreach ($app in $apps) {
     "Installing/Upgrading: [$app]"
