@@ -24,7 +24,7 @@ if (Test-CommandExists ('choco')) {
 }
 else {
     Write-Host "------------------------------------" -ForegroundColor Green
-    Write-Host "Installing Chocolate for Windows..." -ForegroundColor Green
+    Write-Host "Installing Chocolatey for Windows..." -ForegroundColor Green
     Write-Host "------------------------------------" -ForegroundColor Green
     Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
@@ -32,58 +32,82 @@ else {
 # Reload User and System Environment Paths
 sync-envpath
 
+Write-Host "choco AllowGlobalConfirmation so i dont have to confirm when installing apps" -ForegroundColor Yellow
 choco feature enable -n=allowGlobalConfirmation
 
 Write-Host "-------------------------------" -ForegroundColor Green
 Write-Host "Install & Upgrade All Apps" -ForegroundColor Green
 Write-Host "-------------------------------" -ForegroundColor Green
 
-$apps =
-# Terminal Apps/Setup
-"chocolatey",
-"microsoft-windows-terminal",
-"powershell-core",
-"cascadia-code-nerd-font",
-"oh-my-posh",
-"bat",
-"fzf",
-# Essentials
-"git",
-"gh",
-"vscode",
-"obsidian",
-"notepadplusplus",
-"bitwarden",
-"7zip",
-"grammarly-for-windows",
-"adobereader",
-"greenshot",
-"powertoys",
-"devtoys",
-"ditto",
-"docker-desktop",
-"docker-cli",
-"teraterm",
-"virtualbox",
-# Work specific
-"wireshark"
+$terminal_apps = @(
+    "chocolatey"
+    "microsoft-windows-terminal"
+    "powershell-core"
+    "cascadia-code-nerd-font"
+    "oh-my-posh"
+    "bat"
+    "fzf"
+)
 
-# Security
-# "pestudio", #inspect exe binaries
-# Personal PC
-# "drawio",
-# "whatsapp",
-# "rpi-imager",
-# "logitechgaming", # Mouse
-# "nrfjprog",
-# "easytune6", # GPU
-# "zoom",
-# "zoom-outlook"
+$dev_essentials = @(
+    "git"
+    "gh"
+    "vscode"
+    "notepadplusplus"
+    "7zip"
+    "greenshot"
+    "powertoys"
+    "devtoys"
+    "ditto"
+    "docker-desktop"
+    "docker-cli"
+    "teraterm"
+)
 
-foreach ($app in $apps) {
-    "Installing/Upgrading: [$app]"
-    choco upgrade $app -y
+$work_apps = @(
+    "wireshark"
+)
+
+$personal_apps = @(
+    "obsidian" # my notetaking app
+    "bitwarden"
+    "grammarly-for-windows"
+    "adobereader"
+    "whatsapp"
+)
+
+$home_pc = @(
+    "virtualbox"
+    "rpi-imager"
+    "logitechgaming" # Mouse
+    "easytune6" # GPU
+    "zoom"
+    "zoom-outlook"
+)
+
+$misc_apps = @(
+    "drawio"
+)
+
+# #####################################################################################
+# UPDATE THIS LIST AS PER YOUR PREFERENCES
+# #####################################################################################
+$app_list = @(
+    $terminal_apps
+    $dev_essentials
+    $work_apps
+    $personal_apps
+    $home_pc
+    $misc_apps
+)
+
+foreach ($list in $app_list) {
+    foreach ($app in $list) {
+        Write-Host "Installing app [$app]" -ForegroundColor Green
+        choco upgrade $app -y
+    }
 }
+
 
 function install_python() {
     choco install pyenv-win -y
