@@ -7,14 +7,14 @@
 # sometimes bitdefender will run into problems with installation if you have
 # comodo firewall installed already.
 
-Write-Output "-------------------------------" -ForegroundColor Green
-Write-Output "Download & Install Free version of Bitdefender" -ForegroundColor Green
-Write-Output "-------------------------------" -ForegroundColor Green
-Invoke-WebRequest -Uri "https://download.bitdefender.com/windows/installer/en-us/bitdefender_avfree.exe" -OutFile "$pwd/bitdefender_avfree.exe"
-.\bitdefender_avfree.exe
+Write-Host "-------------------------------" -ForegroundColor Green
+Write-Host "Download & Install Free version of Bitdefender" -ForegroundColor Green
+Write-Host "-------------------------------" -ForegroundColor Green
+Invoke-WebRequest -Uri "https://download.bitdefender.com/windows/installer/en-us/bitdefender_avfree.exe" -OutFile "$PSScriptRoot/bitdefender_avfree.exe"
+Invoke-Item "$PSScriptRoot/bitdefender_avfree.exe"
 
-Write-Output "-------------------------------" -ForegroundColor Green
-Write-Output "Download & Install Free version of Comodo Firewall" -ForegroundColor Green
-Write-Output "-------------------------------" -ForegroundColor Green
-Invoke-WebRequest -Uri "https://download.comodo.com/cis/download/installs/1000/partners/cmd_fw_installer_138430009_eb.exe?af=7639" -OutFile "$pwd/cmd_fw_installer_138430009_eb.exe.exe"
-.\cmd_fw_installer_138430009_eb.exe.exe
+Write-Host "-------------------------------" -ForegroundColor Green
+Write-Host "Download & Install Free version of Comodo Firewall" -ForegroundColor Green
+Write-Host "-------------------------------" -ForegroundColor Green
+Invoke-WebRequest -Uri "https://download.comodo.com/cis/download/installs/1000/partners/cmd_fw_installer_138430009_eb.exe?af=7639" -OutFile "$PSScriptRoot/cmd_fw_installer_138430009_eb.exe.exe"
+Invoke-Item "$PSScriptRoot/cmd_fw_installer_138430009_eb.exe.exe"

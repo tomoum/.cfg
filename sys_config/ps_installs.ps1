@@ -36,10 +36,10 @@ Install-Module -Name PSFzf -Repository PSGallery
 # Write-Host "Install posh-git" -ForegroundColor Green
 # Install-Module -Name posh-git -Repository PSGallery -Force
 
-Write-Output "-------------------------------" -ForegroundColor Green
-Write-Output "Changing Registry" -ForegroundColor Green
-Write-Output "Set Powershell font to CaskaydiaCove NF" -ForegroundColor Green
-Write-Output "-------------------------------" -ForegroundColor Green
+Write-Host "-------------------------------" -ForegroundColor Green
+Write-Host "Changing Registry" -ForegroundColor Green
+Write-Host "Set Powershell font to CaskaydiaCove NF" -ForegroundColor Green
+Write-Host "-------------------------------" -ForegroundColor Green
 Set-ItemProperty -Path "Registry::HKEY_CURRENT_USER\Console" -Name "FaceName" -Value "CaskaydiaCove NF" -Type String;
 
 Write-Host "-------------------------------" -ForegroundColor Green
