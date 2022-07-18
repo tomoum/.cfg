@@ -10,6 +10,7 @@ powering up your powershell and cmd prompt CLI experience using
 This is my PowerShell CLI:
 ![alt text](.readme/powershell.png)
 
+This is my CMD CLI:
 ![alt text](.readme/cmd.png)
 
 Things I use this repository for:
