@@ -45,26 +45,21 @@ Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
 ################################################################
 # ALIASES & FUNCTIONS
 ################################################################
-# WORK
-function clonev() {
-    git clone "ssh://git@bitbucket.metro.ad.selinc.com:7999/icon/sel-8000-verification-repo.git" $args
-}
-function sm() {
-    Set-Location "C:\SEL8030_Development"
-}
-function work() {
-    Set-Location "C:\work"
-}
 
-function al() {
-    Set-Location "C:\work\verification\saif-assist\sel-ver-saif"
+# PRIVATE WORK ALIASES
+################################################################
+if ($env:Username -eq "muhatomo") {
+    . "$PSScriptRoot\work.ps1"
 }
 ################################################################
 
 # Display help table for all powershell key bindings
 Set-Alias -Name keys -Value Get-PSReadLineKeyHandler
+
 Set-Alias grep Select-String
+
 Set-Alias -Name cd -Value z -option AllScope
+
 Set-Alias ff fzf
 Set-Alias fe Invoke-FuzzyEdit
 Set-Alias fgs Invoke-FuzzyGitStatus
@@ -142,6 +137,9 @@ function here() {
 }
 function home() {
     Set-Location ~
+}
+function work() {
+    Set-Location "C:\work"
 }
 
 function profile() {
