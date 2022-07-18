@@ -70,7 +70,6 @@ $work_apps = @(
 
 $personal_apps = @(
     "obsidian" # my notetaking app
-    "bitwarden"
     "grammarly-for-windows"
     "adobereader"
     "whatsapp"
@@ -97,8 +96,8 @@ $app_list = @(
     $dev_essentials
     $work_apps
     $personal_apps
-    $home_pc
-    $misc_apps
+    # $home_pc
+    # $misc_apps
 )
 
 foreach ($list in $app_list) {
@@ -119,10 +118,10 @@ function install_python() {
 
     add-envpath -path "$env:USERPROFILE\.pyenv\pyenv-win\bin" -container "User"
     add-envpath -path "$env:USERPROFILE\.pyenv\pyenv-win\shims" -container "User"
+    sync-envpath
 }
 
-install_python
-sync-envpath
+# install_python
 
 Write-Host "-------------------------------" -ForegroundColor Green
 Write-Host "Installation Complete" -ForegroundColor Green
