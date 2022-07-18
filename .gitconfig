@@ -1,6 +1,10 @@
 [user]
 name = Muhab Tomoum
-email = muhab_tomoum@selinc.com
+email = muhabtomoum@gmail.com
+
+[includeIf "gitdir:~/work/"]
+path = .gitconfig-work
+
 [core]
 excludesfile = "$HOME/.gitignore_global"
 autocrlf = true
