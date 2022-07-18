@@ -7,6 +7,11 @@ powering up your powershell and cmd prompt CLI experience using
 [oh-my-posh](https://ohmyposh.dev/) and
 [clink](https://mridgers.github.io/clink/).
 
+This is my PowerShell CLI:
+![alt text](.readme/powershell.png)
+
+![alt text](.readme/cmd.png)
+
 Things I use this repository for:
 
 1. syncing my configuration files across multiple machines.
