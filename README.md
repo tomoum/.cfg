@@ -1,17 +1,59 @@
 # .cfg
-all my dotfiles configs, environment and application setup scripts
 
-Instuctions for cloning 
+## Overview
+Easily manage all your configuration files on your windows machine using a
+git bare repo. E.g powershell profile or gitconfig files. In addition to
+powering up your powershell and cmd prompt CLI experience using
+[oh-my-posh](https://ohmyposh.dev/) and
+[clink](https://mridgers.github.io/clink/).
 
-References: 
-* https://www.atlassian.com/git/tutorials/dotfiles
-* https://chocolatey.org/install
+Things I use this repository for:
 
-Manual Part:
+1. syncing my configuration files across multiple machines.
+2. maintaining a list of applications that i discover in case i need to
+setup a new machine
+3. maintaining useful general purpose powershell scripts and modules that
+imporve my CLI experience
 
-1. Install choco using: `Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))`
-2. `choco install bitwarden git gh -y`
-3. sign in to github
-4. `git clone --bare <git-repo-url> $HOME\.cfg`
-5. `git --git-dir=$HOME\\.cfg\\ --work-tree=$HOME checkout --force`
-  Note: the --force will delete will replace files that already exists be careful 
+Good Resources on the subject and where I got my inspiration:
+
+* <https://octopus.com/blog/automate-developer-machine-setup-with-chocolatey#windows-features>
+* <https://www.hanselman.com/blog/my-ultimate-powershell-prompt-with-oh-my-posh-and-the-windows-terminal>
+* <https://edi.wang/post/2018/12/21/automate-windows-10-developer-machine-setup>
+* <https://www.atlassian.com/git/tutorials/dotfiles>
+
+
+## How to use this repository
+
+First off you should not run any scripts on the internet without first reading
+what they do. Once you read through all the scripts and you are happy with the
+configuration changes. follow the instructions below.
+
+Instructions:
+
+1. fork this repository then adjust the URL below to your own
+repository
+2. launch a powershell with elevated privileges
+3. `git clone --bare https://github.com/tomoum/.cfg.git $HOME\.cfg`
+4. `git --git-dir=$HOME\\.cfg\\ --work-tree=$HOME checkout --force`
+5. `cd $HOME`
+6. `cd .\sys_config`
+7. review all the scripts in this directory starting with `windows_init.ps1` and adjust which
+ones you want to run based on your needs
+8. `.\windows_init`
+9. enjoy
+
+
+>Note:
+>**The `--force` flagg will delete and replace files that already
+exist be careful**
+
+## Misc
+
+Sometimes when deploying this on a new machine i will install choco first in order to install git so i can get started that way.
+
+install choco using the following command:
+
+```shell
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```

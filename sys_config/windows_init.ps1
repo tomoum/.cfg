@@ -32,6 +32,9 @@ $installer_scripts = "$PSScriptRoot\installer_scripts"
 . "$installer_scripts\install_wsl.ps1"
 # install free versions of bitdefender and comodo firewall
 . "$installer_scripts\install_security.ps1"
+# install scheduled system tasks to automatically run pwsh scripts
+# currently only task is to upgrade all choco installed apps daily
+. "$installer_scripts\install_scheduled_tasks.ps1"
 
 Write-Host "-------------------------------" -ForegroundColor Green
 Write-Host "Download & Install Free version of Seer.exe" -ForegroundColor Green
