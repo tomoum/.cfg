@@ -13,7 +13,6 @@ doskey cfg=git --git-dir=%USERPROFILE%\\.cfg\\ --work-tree=%USERPROFILE% $*
 doskey gitconfig=git config --edit --global
 
 @REM PRIVATE WORK ALIASES
-IF %USERNAME% EQU "muhatomo" (
-    SET script_path=%~dp0
-    . "%script_path%\work.bat"
+IF %USERNAME% EQU muhatomo (
+    call "%USERPROFILE%\work.cmd"
 )
