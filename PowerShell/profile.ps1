@@ -43,6 +43,12 @@ Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
 }
 
 ################################################################
+# ENV VARIABLES
+################################################################
+# force pipenv to use powershell core instead of the default cmd prompt
+$Env:PIPENV_SHELL = "pwsh"
+
+################################################################
 # ALIASES & FUNCTIONS
 ################################################################
 
