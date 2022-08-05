@@ -147,7 +147,14 @@ function home() {
 function work() {
     Set-Location "C:\work"
 }
+function env() {
+    # list all environment variables with var names
+    Get-ChildItem env:
+}
 
+function path() {
+    $env:Path -split ';'
+}
 function profile() {
     code $Home\Powershell\profile.ps1
 }
