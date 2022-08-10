@@ -57,6 +57,10 @@ $Env:PIPENV_SHELL = "pwsh"
 if ($env:Username -eq "muhatomo") {
     . "$PSScriptRoot\work.ps1"
 }
+function workp() {
+    code $Home\Powershell\work.ps1
+}
+
 ################################################################
 
 # Display help table for all powershell key bindings
@@ -72,6 +76,7 @@ Set-Alias fgs Invoke-FuzzyGitStatus
 Set-Alias fh Invoke-FuzzyHistory
 Set-Alias fkill Invoke-FuzzyKillProcess
 Set-Alias fd Invoke-FuzzySetLocation
+
 
 # GIT
 function gitco {
