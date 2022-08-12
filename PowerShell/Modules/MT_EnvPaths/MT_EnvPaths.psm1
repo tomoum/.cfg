@@ -2,7 +2,7 @@
 # https://gist.github.com/mkropat/c1226e0cc2ca941b23a9#file-envpaths-psm1
 
 function sync-envpath {
-    Write-Host "Reloading environment variables..." -ForegroundColor Green
+    Write-Host "Reloading User and Machine Paths for this session" -ForegroundColor Green
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 }
 
@@ -39,11 +39,7 @@ function add-envpath {
         }
     }
 
-    $envPaths = $env:Path -split ';'
-    if ($envPaths -notcontains $Path) {
-        $envPaths = $envPaths + $Path | Where-Object { $_ }
-        $env:Path = $envPaths -join ';'
-    }
+    sync-envpath
 }
 
 function remove-envpath {
@@ -71,11 +67,7 @@ function remove-envpath {
         }
     }
 
-    $envPaths = $env:Path -split ';'
-    if ($envPaths -contains $Path) {
-        $envPaths = $envPaths | Where-Object { $_ -and $_ -ne $Path }
-        $env:Path = $envPaths -join ';'
-    }
+    sync-envpath
 }
 
 function envpath {
