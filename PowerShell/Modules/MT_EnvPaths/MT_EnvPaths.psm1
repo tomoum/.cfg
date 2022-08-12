@@ -12,7 +12,10 @@ function add-envpath {
         [string] $Path,
 
         [ValidateSet('Machine', 'User', 'Session')]
-        [string] $Container = 'Session'
+        [string] $Container = 'Session',
+
+        [Parameter(Mandatory = $false)]
+        [switch] $Prepend
     )
 
     Write-Host "Adding path: $Path to container: $Container" -ForegroundColor Yellow
@@ -24,10 +27,15 @@ function add-envpath {
         }
         $containerType = $containerMapping[$Container]
 
-        $persistedPaths = [Environment]::GetEnvironmentVariable('Path', $containerType) -split ';'
-        if ($persistedPaths -notcontains $Path) {
-            $persistedPaths = $persistedPaths + $Path | Where-Object { $_ }
-            [Environment]::SetEnvironmentVariable('Path', $persistedPaths -join ';', $containerType)
+        $persistedPaths = [Environment]::GetEnvironmentVariable('Path', $containerType)
+        if ($persistedPaths -split ';' -notcontains $Path) {
+            if ($Prepend -eq $true) {
+                $persistedPaths = $Path + ';' + $persistedPaths | Where-Object { $_ }
+            }
+            else {
+                $persistedPaths = $persistedPaths + ';' + $Path | Where-Object { $_ }
+            }
+            [Environment]::SetEnvironmentVariable('Path', $persistedPaths, $containerType)
         }
     }
 
