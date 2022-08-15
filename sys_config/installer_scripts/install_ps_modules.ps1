@@ -3,13 +3,20 @@ Write-Host "-------------------------------" -ForegroundColor Green
 Write-Host "Setting Up PowerShell" -ForegroundColor Green
 Write-Host "-------------------------------" -ForegroundColor Green
 
+Write-Host "Registry Changes:" -ForegroundColor Green
 # Move Powershell profile location to user directory
 $my_powershell_profile_dir = $env:USERPROFILE
 Write-Host "-------------------------------" -ForegroundColor Green
 Write-Host "Setting Powershell Profile Folder to $my_powershell_profile_dir" -ForegroundColor Green
 Write-Host "-------------------------------" -ForegroundColor Green
 New-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders' Personal -Value $my_powershell_profile_dir -Type ExpandString -Force
+# Check changes
 $profile | Select-Object *
+
+Write-Host "-------------------------------" -ForegroundColor Green
+Write-Host "Set Powershell font to CaskaydiaCove NF" -ForegroundColor Green
+Write-Host "-------------------------------" -ForegroundColor Green
+Set-ItemProperty -Path "Registry::HKEY_CURRENT_USER\Console" -Name "FaceName" -Value "CaskaydiaCove NF" -Type String;
 
 Set-PSRepository PSGallery
 
@@ -36,11 +43,6 @@ Install-Module -Name PSFzf -Repository PSGallery
 # Write-Host "Install posh-git" -ForegroundColor Green
 # Install-Module -Name posh-git -Repository PSGallery -Force
 
-Write-Host "-------------------------------" -ForegroundColor Green
-Write-Host "Changing Registry" -ForegroundColor Green
-Write-Host "Set Powershell font to CaskaydiaCove NF" -ForegroundColor Green
-Write-Host "-------------------------------" -ForegroundColor Green
-Set-ItemProperty -Path "Registry::HKEY_CURRENT_USER\Console" -Name "FaceName" -Value "CaskaydiaCove NF" -Type String;
 
 Write-Host "-------------------------------" -ForegroundColor Green
 Write-Host "PowerShell Setup Complete" -ForegroundColor Green
