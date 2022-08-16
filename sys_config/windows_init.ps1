@@ -21,6 +21,9 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 # INSTALLATION & CONFIGURATION
 # #####################################
 $installer_scripts = "$PSScriptRoot\installer_scripts"
+# Add Path to custom modules
+$Env:PSModulePath = $Env:PSModulePath + ";$env:USERPROFILE\PowerShell\Modules"
+Write-Host "Updated PS Module Paths: $Env:PSModulePath" -ForegroundColor Green
 
 # install all my apps using choco
 . "$installer_scripts\install_choco_apps.ps1"
