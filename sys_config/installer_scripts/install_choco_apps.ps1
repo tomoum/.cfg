@@ -42,7 +42,6 @@ Write-Host "-------------------------------" -ForegroundColor Green
 $terminal_apps = @(
     "chocolatey"
     "microsoft-windows-terminal"
-    "powershell-core"
     "cascadia-code-nerd-font"
     "oh-my-posh"
     "bat"
@@ -91,6 +90,9 @@ $misc_apps = @(
 # #####################################################################################
 # UPDATE THIS LIST AS PER YOUR PREFERENCES
 # #####################################################################################
+
+choco install powershell-core --install-arguments='"ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 ADD_FILE_CONTEXT_MENU_RUNPOWERSHELL=1 USE_MU=1 ENABLE_MU=1"'
+
 $app_list = @(
     $terminal_apps
     $dev_essentials
@@ -110,18 +112,19 @@ foreach ($list in $app_list) {
 
 function install_python() {
     choco install pyenv-win -y
-    [System.Environment]::SetEnvironmentVariable('PYENV', $env:USERPROFILE + "\.pyenv\pyenv-win\", "User")
-
-    [System.Environment]::SetEnvironmentVariable('PYENV_ROOT', $env:USERPROFILE + "\.pyenv\pyenv-win\", "User")
-
-    [System.Environment]::SetEnvironmentVariable('PYENV_HOME', $env:USERPROFILE + "\.pyenv\pyenv-win\", "User")
-
-    add-envpath -path "$env:USERPROFILE\.pyenv\pyenv-win\bin" -container "User"
-    add-envpath -path "$env:USERPROFILE\.pyenv\pyenv-win\shims" -container "User"
+    # Add User Environment Variables
+    [System.Environment]::SetEnvironmentVariable('PYENV', "$env:USERPROFILE\.pyenv\pyenv-win\", "User")
+    [System.Environment]::SetEnvironmentVariable('PYENV_ROOT', "$env:USERPROFILE\.pyenv\pyenv-win\", "User")
+    [System.Environment]::SetEnvironmentVariable('PYENV_HOME', "$env:USERPROFILE\.pyenv\pyenv-win\", "User")
+    [System.Environment]::SetEnvironmentVariable('PIPENV_PYTHON', "$env:USERPROFILE\.pyenv\pyenv-win\shims" , "User")
+    # Add user paths
+    add-envpath -Path "$env:USERPROFILE\.pyenv\pyenv-win\bin" -Container "User" -Prepend
+    add-envpath -Path "$env:USERPROFILE\.pyenv\pyenv-win\shims" -Container "User" -Prepend
     sync-envpath
+    pyenv update
 }
 
-# install_python
+install_python
 
 Write-Host "-------------------------------" -ForegroundColor Green
 Write-Host "Installation Complete" -ForegroundColor Green
