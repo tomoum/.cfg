@@ -12,8 +12,6 @@ if ($host.Name -eq 'ConsoleHost') {
 
 Import-Module -Name Terminal-Icons
 Import-Module -Name PSFzf # Fuzzy finder
-# BUGFIX: if you cant import PSFzf when installed using PSGallery try
-# installing it with chocolatey
 
 
 # CUSTOM MODULES IMPORTS
@@ -68,7 +66,7 @@ Set-Alias -Name keys -Value Get-PSReadLineKeyHandler
 
 Set-Alias grep Select-String
 
-Set-Alias -Name cd -Value z -option AllScope
+Set-Alias -Name cd -Value z -Option AllScope
 
 Set-Alias ff fzf
 Set-Alias fe Invoke-FuzzyEdit

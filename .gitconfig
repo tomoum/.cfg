@@ -72,4 +72,4 @@ pull = "pull --ff-only"
 # run `git rebase --autosquash`
 # fixup = "commit --fixup=HEAD"
 [credential "https://bitbucket.metro.ad.selinc.com"]
-	provider = bitbucket
+provider = bitbucket
