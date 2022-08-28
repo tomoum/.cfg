@@ -59,9 +59,10 @@ $Env:PIPENV_SHELL = "pwsh"
 ################################################################
 if ($env:Username -eq "muhatomo") {
     . "$PSScriptRoot\work.ps1"
-}
-function workp() {
-    code $Home\Powershell\work.ps1
+
+    function workp() {
+        code $Home\Powershell\work.ps1
+    }
 }
 
 ################################################################
@@ -550,3 +551,4 @@ Set-PSReadLineKeyHandler -Key Backspace `
 #     [Microsoft.PowerShell.PSConsoleReadLine]::Insert("dotnet build")
 #     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 # }
+
