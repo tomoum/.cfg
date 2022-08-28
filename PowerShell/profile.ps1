@@ -19,7 +19,7 @@ if ($env:Username -eq "muhatomo") {
     Import-Module -Name SEL_EnvPaths -DisableNameChecking
 }
 else {
-    Import-Module -Name MT_Util -DisableNameChecking
+    Import-Module -Name MT_Utility -DisableNameChecking
     Import-Module -Name MT_EnvPaths -DisableNameChecking
 }
 
