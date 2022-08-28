@@ -12,13 +12,16 @@ if ($host.Name -eq 'ConsoleHost') {
 
 Import-Module -Name Terminal-Icons
 Import-Module -Name PSFzf # Fuzzy finder
-# BUGFIX: if you cant import PSFzf when installed using PSGallery try
-# installing it with chocolatey
-
 
 # CUSTOM MODULES IMPORTS
-Import-Module -Name MT_Util -DisableNameChecking
-Import-Module -Name MT_EnvPaths -DisableNameChecking
+if ($env:Username -eq "muhatomo") {
+    Import-Module -Name SEL_Utility -DisableNameChecking
+    Import-Module -Name SEL_EnvPaths -DisableNameChecking
+}
+else {
+    Import-Module -Name MT_Util -DisableNameChecking
+    Import-Module -Name MT_EnvPaths -DisableNameChecking
+}
 
 ################################################################
 # MODULE SETTINGS
@@ -43,6 +46,12 @@ Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
 }
 
 ################################################################
+# ENV VARIABLES
+################################################################
+# force pipenv to use powershell core instead of the default cmd prompt
+$Env:PIPENV_SHELL = "pwsh"
+
+################################################################
 # ALIASES & FUNCTIONS
 ################################################################
 
@@ -51,6 +60,10 @@ Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
 if ($env:Username -eq "muhatomo") {
     . "$PSScriptRoot\work.ps1"
 }
+function workp() {
+    code $Home\Powershell\work.ps1
+}
+
 ################################################################
 
 # Display help table for all powershell key bindings
@@ -58,7 +71,7 @@ Set-Alias -Name keys -Value Get-PSReadLineKeyHandler
 
 Set-Alias grep Select-String
 
-Set-Alias -Name cd -Value z -option AllScope
+Set-Alias -Name cd -Value z -Option AllScope
 
 Set-Alias ff fzf
 Set-Alias fe Invoke-FuzzyEdit
@@ -66,6 +79,7 @@ Set-Alias fgs Invoke-FuzzyGitStatus
 Set-Alias fh Invoke-FuzzyHistory
 Set-Alias fkill Invoke-FuzzyKillProcess
 Set-Alias fd Invoke-FuzzySetLocation
+
 
 # GIT
 function gitco {
@@ -141,7 +155,14 @@ function home() {
 function work() {
     Set-Location "C:\work"
 }
+function env() {
+    # list all environment variables with var names
+    Get-ChildItem env:
+}
 
+function path() {
+    $env:Path -split ';'
+}
 function profile() {
     code $Home\Powershell\profile.ps1
 }
