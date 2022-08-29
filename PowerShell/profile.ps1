@@ -68,9 +68,6 @@ function workp() {
 
 # Display help table for all powershell key bindings
 Set-Alias -Name keys -Value Get-PSReadLineKeyHandler
-
-Set-Alias grep Select-String
-
 Set-Alias -Name cd -Value z -Option AllScope
 
 Set-Alias ff fzf
@@ -133,7 +130,13 @@ function cwd() {
 }
 
 function cfg() {
+    $TempA = $env:HTTP_PROXY
+    $TempB = $env:HTTPS_PROXY
+    $env:HTTP_PROXY = ""
+    $env:HTTPS_PROXY = ""
     git --git-dir=$HOME\\.cfg\\ --work-tree=$HOME $args
+    $env:HTTP_PROXY = $TempA
+    $env:HTTPS_PROXY = $TempB
 }
 
 Set-Alias config cfg
