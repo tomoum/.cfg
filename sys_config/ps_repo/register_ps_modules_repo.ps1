@@ -6,6 +6,7 @@ upgrade Nuget.exe
 
 . $PSScriptRoot\common.ps1
 
+
 Write-Host Updating NuGet Package -ForegroundColor Green
 Invoke-WebRequest -Uri https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -OutFile "$env:LOCALAPPDATA\Microsoft\Windows\PowerShell\PowerShellGet\NuGet.exe"
 
