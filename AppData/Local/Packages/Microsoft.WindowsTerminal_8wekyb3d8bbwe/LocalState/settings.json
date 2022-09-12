@@ -4,16 +4,16 @@
     "actions": 
     [
         {
+            "command": "paste",
+            "keys": "ctrl+v"
+        },
+        {
             "command": 
             {
                 "action": "copy",
                 "singleLine": false
             },
             "keys": "ctrl+c"
-        },
-        {
-            "command": "paste",
-            "keys": "ctrl+v"
         },
         {
             "command": 
@@ -23,12 +23,12 @@
             "keys": "ctrl+t"
         },
         {
-            "command": "find",
-            "keys": "ctrl+shift+f"
-        },
-        {
             "command": "closePane",
             "keys": "ctrl+w"
+        },
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
         },
         {
             "command": 
@@ -79,13 +79,13 @@
             },
             {
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-                "hidden": true,
+                "hidden": false,
                 "name": "Windows PowerShell"
             },
             {
-                "guid": "{5a069d55-87bd-57cf-8a07-2726b203d3e5}",
+                "guid": "{59b72ad2-09f7-55ec-af87-65d062af8472}",
                 "hidden": false,
-                "name": "Ubuntu 20.04.4 LTS",
+                "name": "Ubuntu 20.04.5 LTS",
                 "source": "CanonicalGroupLimited.Ubuntu20.04LTS_79rhkp1fndgsc"
             }
         ]
