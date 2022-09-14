@@ -12,6 +12,7 @@ if ($host.Name -eq 'ConsoleHost') {
 
 Import-Module -Name Terminal-Icons
 Import-Module -Name PSFzf # Fuzzy finder
+Import-Module DockerCompletion
 
 # CUSTOM MODULES IMPORTS
 if ($env:Username -eq "muhatomo") {
