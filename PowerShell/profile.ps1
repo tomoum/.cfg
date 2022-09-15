@@ -83,6 +83,9 @@ Set-Alias fh Invoke-FuzzyHistory
 Set-Alias fkill Invoke-FuzzyKillProcess
 Set-Alias fd Invoke-FuzzySetLocation
 
+function start-docker() {
+    . "C:\Program Files\Docker\Docker\Docker Desktop.exe"
+}
 
 # GIT
 function gitco {
