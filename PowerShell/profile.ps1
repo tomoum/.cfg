@@ -12,6 +12,7 @@ if ($host.Name -eq 'ConsoleHost') {
 
 Import-Module -Name Terminal-Icons
 Import-Module -Name PSFzf # Fuzzy finder
+Import-Module DockerCompletion
 
 # CUSTOM MODULES IMPORTS
 if ($env:Username -eq "muhatomo") {
@@ -70,6 +71,7 @@ if ($env:Username -eq "muhatomo") {
 # Display help table for all powershell key bindings
 Set-Alias -Name keys -Value Get-PSReadLineKeyHandler
 Set-Alias -Name cd -Value z -Option AllScope
+Set-Alias -Name cat -Value bat -Option AllScope
 
 Set-Alias ff fzf
 Set-Alias fe Invoke-FuzzyEdit
@@ -78,6 +80,9 @@ Set-Alias fh Invoke-FuzzyHistory
 Set-Alias fkill Invoke-FuzzyKillProcess
 Set-Alias fd Invoke-FuzzySetLocation
 
+function start-docker() {
+    . "C:\Program Files\Docker\Docker\Docker Desktop.exe"
+}
 
 # GIT
 function gitco {

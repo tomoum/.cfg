@@ -43,6 +43,9 @@ Write-Host "Install Fuzzy Finder" -ForegroundColor Green
 Install-Module -Name PSFzf -Repository PSGallery -Force
 # Note: you also have to install with choco for the binary for some reason
 
+Write-Host "Install Docker Autocomplete" -ForegroundColor Green
+Install-Module -Name DockerCompletion -Repository PSGallery -Force
+
 Update-Help -ErrorAction SilentlyContinue
 
 Write-Host "-------------------------------" -ForegroundColor Green
