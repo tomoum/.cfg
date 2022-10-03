@@ -7,7 +7,7 @@ path = .gitconfig-work
 
 [core]
 excludesfile = "$HOME/.gitignore_global"
-autocrlf = true
+	autocrlf = true
 editor = code --wait
 [diff]
 tool = vscode
