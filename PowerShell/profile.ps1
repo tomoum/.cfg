@@ -3,7 +3,7 @@ using namespace System.Management.Automation
 using namespace System.Management.Automation.Language
 
 # Set PowerShell to UTF-8 the default is UTF-16
-[console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
+# [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
 
 # MODULE IMPORTS
 if ($host.Name -eq 'ConsoleHost') {

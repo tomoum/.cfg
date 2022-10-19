@@ -33,6 +33,7 @@ prune = true
 tags = "tag -l"
 branches = "branch -a"
 remotes = "remote -v"
+graph = "log --graph --oneline --decorate"
 
 # Shorten common commands
 co = "checkout"
@@ -71,3 +72,9 @@ pull = "pull --ff-only"
 # Create a commit that will be automatically squashed as a fixup when you
 # run `git rebase --autosquash`
 # fixup = "commit --fixup=HEAD"
+[credential "https://github.com"]
+	helper =
+	helper = !'C:\\Program Files\\GitHub CLI\\gh.exe' auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !'C:\\Program Files\\GitHub CLI\\gh.exe' auth git-credential
