@@ -83,6 +83,10 @@ Set-Alias fh Invoke-FuzzyHistory
 Set-Alias fkill Invoke-FuzzyKillProcess
 Set-Alias fd Invoke-FuzzySetLocation
 
+function clear-folder() {
+    Get-ChildItem -Include $args -Recurse -Force | Remove-Item -Force -Recurse
+}
+
 function start-docker() {
     . 'C:\Program Files\Docker\Docker\Docker Desktop.exe'
 }
