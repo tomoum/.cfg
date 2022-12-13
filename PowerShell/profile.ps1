@@ -17,7 +17,6 @@ Import-Module -Name PSFzf # Fuzzy finder
 if ($env:Username -eq 'muhatomo') {
     Import-Module -Name SEL_Utility -DisableNameChecking
     Import-Module -Name SEL_EnvPaths -DisableNameChecking
-    Import-Module DockerCompletion
 }
 else {
     Import-Module -Name MT_Utility -DisableNameChecking
@@ -85,6 +84,7 @@ function clear-folder() {
 }
 
 function start-docker() {
+    Import-Module DockerCompletion
     . 'C:\Program Files\Docker\Docker\Docker Desktop.exe'
 }
 
@@ -142,8 +142,8 @@ function cwd() {
 function cfg() {
     $TempA = $env:HTTP_PROXY
     $TempB = $env:HTTPS_PROXY
-    $env:HTTP_PROXY = ""
-    $env:HTTPS_PROXY = ""
+    $env:HTTP_PROXY = ''
+    $env:HTTPS_PROXY = ''
     git --git-dir=$HOME\\.cfg\\ --work-tree=$HOME $args
     $env:HTTP_PROXY = $TempA
     $env:HTTPS_PROXY = $TempB
