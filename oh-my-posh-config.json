@@ -5,13 +5,17 @@
             "alignment": "left",
             "segments": [
                 {
-                    "type": "session",
+                    "type": "path",
                     "style": "diamond",
                     "leading_diamond": "╭─",
-                    "trailing_diamond": "",
-                    "foreground": "#ffffff",
-                    "background": "#7d59a8",
-                    "template": "\uf74a {{ if .SSHSession }}\uf817 {{ end }}{{ .UserName }}@{{ .HostName }}"
+                    "trailing_diamond": "\ue0b0",
+                    "background": "#ee676e",
+                    "foreground": "#021e30",
+                    "template": " \uf74a {{ .Path }} ",
+                    "properties": {
+                        "home_icon": "~",
+                        "style": "mixed"
+                    }
                 },
                 {
                     "type": "root",
@@ -20,18 +24,6 @@
                     "background": "#ffff66",
                     "powerline_symbol": "\ue0b0",
                     "template": " \uF0E7 "
-                },
-                {
-                    "type": "path",
-                    "style": "powerline",
-                    "powerline_symbol": "\ue0b0",
-                    "background": "#ee676e",
-                    "foreground": "#021e30",
-                    "template": " \uf74a {{ .Path }} ",
-                    "properties": {
-                        "home_icon": "~",
-                        "style": "mixed"
-                    }
                 },
                 {
                     "type": "git",

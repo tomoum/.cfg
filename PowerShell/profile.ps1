@@ -3,7 +3,7 @@ using namespace System.Management.Automation
 using namespace System.Management.Automation.Language
 
 # Set PowerShell to UTF-8 the default is UTF-16
-[console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
+# [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
 
 # MODULE IMPORTS
 if ($host.Name -eq 'ConsoleHost') {
@@ -12,12 +12,12 @@ if ($host.Name -eq 'ConsoleHost') {
 
 Import-Module -Name Terminal-Icons
 Import-Module -Name PSFzf # Fuzzy finder
-Import-Module DockerCompletion
 
 # CUSTOM MODULES IMPORTS
-if ($env:Username -eq "muhatomo") {
+if ($env:Username -eq 'muhatomo') {
     Import-Module -Name SEL_Utility -DisableNameChecking
     Import-Module -Name SEL_EnvPaths -DisableNameChecking
+    Import-Module DockerCompletion
 }
 else {
     Import-Module -Name MT_Utility -DisableNameChecking
@@ -50,7 +50,7 @@ Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
 # ENV VARIABLES
 ################################################################
 # force pipenv to use powershell core instead of the default cmd prompt
-$Env:PIPENV_SHELL = "pwsh"
+$Env:PIPENV_SHELL = 'pwsh'
 
 ################################################################
 # ALIASES & FUNCTIONS
@@ -58,7 +58,7 @@ $Env:PIPENV_SHELL = "pwsh"
 
 # PRIVATE WORK ALIASES
 ################################################################
-if ($env:Username -eq "muhatomo") {
+if ($env:Username -eq 'muhatomo') {
     . "$PSScriptRoot\work.ps1"
 
     function workp() {
@@ -80,8 +80,12 @@ Set-Alias fh Invoke-FuzzyHistory
 Set-Alias fkill Invoke-FuzzyKillProcess
 Set-Alias fd Invoke-FuzzySetLocation
 
+function clear-folder() {
+    Get-ChildItem -Include $args -Recurse -Force | Remove-Item -Force -Recurse
+}
+
 function start-docker() {
-    . "C:\Program Files\Docker\Docker\Docker Desktop.exe"
+    . 'C:\Program Files\Docker\Docker\Docker Desktop.exe'
 }
 
 # GIT
@@ -103,7 +107,7 @@ function gitco {
             })]
         [string] $branch
     )
-    $branch = $branch.Replace("origin/", "")
+    $branch = $branch.Replace('origin/', '')
     git checkout ([regex]::escape($branch))
 }
 function gitdel {
@@ -162,7 +166,7 @@ function home() {
     Set-Location ~
 }
 function work() {
-    Set-Location "C:\work"
+    Set-Location 'C:\work'
 }
 function env() {
     # list all environment variables with var names
@@ -245,7 +249,7 @@ Set-PSReadLineKeyHandler -Key F7 `
 # F1 for help on the command line - naturally
 Set-PSReadLineKeyHandler -Key F1 `
     -BriefDescription CommandHelp `
-    -LongDescription "Open the help window for the current command" `
+    -LongDescription 'Open the help window for the current command' `
     -ScriptBlock {
     param($key, $arg)
 
@@ -303,7 +307,7 @@ Set-PSReadLineKeyHandler -Key RightArrow `
 # on the command line.
 Set-PSReadLineKeyHandler -Key Alt+a `
     -BriefDescription SelectCommandArguments `
-    -LongDescription "Set current selection to next command argument in the command line. Use of digit argument selects argument by position" `
+    -LongDescription 'Set current selection to next command argument in the command line. Use of digit argument selects argument by position' `
     -ScriptBlock {
     param($key, $arg)
 
@@ -372,7 +376,7 @@ Set-PSReadLineKeyHandler -Key Alt+a `
 
 Set-PSReadLineKeyHandler -Key '"', "'" `
     -BriefDescription SmartInsertQuote `
-    -LongDescription "Insert paired quotes if not already on a quote" `
+    -LongDescription 'Insert paired quotes if not already on a quote' `
     -ScriptBlock {
     param($key, $arg)
 
@@ -467,7 +471,7 @@ Set-PSReadLineKeyHandler -Key '"', "'" `
 
 Set-PSReadLineKeyHandler -Key '(', '{', '[' `
     -BriefDescription InsertPairedBraces `
-    -LongDescription "Insert matching braces" `
+    -LongDescription 'Insert matching braces' `
     -ScriptBlock {
     param($key, $arg)
 
@@ -499,7 +503,7 @@ Set-PSReadLineKeyHandler -Key '(', '{', '[' `
 
 Set-PSReadLineKeyHandler -Key ')', ']', '}' `
     -BriefDescription SmartCloseBraces `
-    -LongDescription "Insert closing brace or skip" `
+    -LongDescription 'Insert closing brace or skip' `
     -ScriptBlock {
     param($key, $arg)
 
@@ -517,7 +521,7 @@ Set-PSReadLineKeyHandler -Key ')', ']', '}' `
 
 Set-PSReadLineKeyHandler -Key Backspace `
     -BriefDescription SmartBackspace `
-    -LongDescription "Delete previous character or matching quotes/parens/braces" `
+    -LongDescription 'Delete previous character or matching quotes/parens/braces' `
     -ScriptBlock {
     param($key, $arg)
 
