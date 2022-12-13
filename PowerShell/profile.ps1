@@ -35,6 +35,8 @@ oh-my-posh init pwsh --config "$Home\oh-my-posh-config.json" | Invoke-Expression
 ################################################################
 # AUTO COMPLETE HANDLERS
 ################################################################
+Invoke-Expression -Command $(gh completion -s powershell | Out-String)
+
 Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
     param($wordToComplete, $commandAst, $cursorPosition)
     [Console]::InputEncoding = [Console]::OutputEncoding = $OutputEncoding = [System.Text.Utf8Encoding]::new()
