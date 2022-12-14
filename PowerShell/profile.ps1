@@ -73,7 +73,7 @@ Set-Alias -Name keys -Value Get-PSReadLineKeyHandler
 
 Set-Alias grep Select-String
 
-Set-Alias -Name cd -Value z -Option AllScope
+# Set-Alias -Name cd -Value z -Option AllScope
 Set-Alias -Name cat -Value bat -Option AllScope
 
 Set-Alias ff fzf
