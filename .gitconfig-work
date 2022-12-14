@@ -1,6 +1,0 @@
-
-[user]
-email = muhab_tomoum@selinc.com
-
-[credential "https://bitbucket.metro.ad.selinc.com"]
-provider = bitbucket
