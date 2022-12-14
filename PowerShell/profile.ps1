@@ -17,7 +17,6 @@ Import-Module -Name PSFzf # Fuzzy finder
 if ($env:Username -eq 'muhatomo') {
     Import-Module -Name SEL_Utility -DisableNameChecking
     Import-Module -Name SEL_EnvPaths -DisableNameChecking
-    Import-Module DockerCompletion
 }
 else {
     Import-Module -Name MT_Utility -DisableNameChecking
@@ -36,6 +35,8 @@ oh-my-posh init pwsh --config "$Home\oh-my-posh-config.json" | Invoke-Expression
 ################################################################
 # AUTO COMPLETE HANDLERS
 ################################################################
+Invoke-Expression -Command $(gh completion -s powershell | Out-String)
+
 Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
     param($wordToComplete, $commandAst, $cursorPosition)
     [Console]::InputEncoding = [Console]::OutputEncoding = $OutputEncoding = [System.Text.Utf8Encoding]::new()
@@ -88,6 +89,7 @@ function clear-folder() {
 }
 
 function start-docker() {
+    Import-Module DockerCompletion
     . 'C:\Program Files\Docker\Docker\Docker Desktop.exe'
 }
 
@@ -143,7 +145,13 @@ function cwd() {
 }
 
 function cfg() {
+    $TempA = $env:HTTP_PROXY
+    $TempB = $env:HTTPS_PROXY
+    $env:HTTP_PROXY = ''
+    $env:HTTPS_PROXY = ''
     git --git-dir=$HOME\\.cfg\\ --work-tree=$HOME $args
+    $env:HTTP_PROXY = $TempA
+    $env:HTTPS_PROXY = $TempB
 }
 
 Set-Alias config cfg
