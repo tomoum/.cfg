@@ -1,6 +1,7 @@
 # .cfg
 
 ## Overview
+
 Easily manage all your configuration files on your windows machine using a
 git bare repo. E.g powershell profile or gitconfig files. In addition to
 powering up your powershell and cmd prompt CLI experience using
@@ -19,7 +20,7 @@ Things I use this repository for:
 2. maintaining a list of applications that i discover in case i need to
 setup a new machine
 3. maintaining useful general purpose powershell scripts and modules that
-imporve my CLI experience
+improve my CLI experience
 
 Good Resources on the subject and where I got my inspiration:
 
@@ -27,7 +28,6 @@ Good Resources on the subject and where I got my inspiration:
 * <https://www.hanselman.com/blog/my-ultimate-powershell-prompt-with-oh-my-posh-and-the-windows-terminal>
 * <https://edi.wang/post/2018/12/21/automate-windows-10-developer-machine-setup>
 * <https://www.atlassian.com/git/tutorials/dotfiles>
-
 
 ## How to use this repository
 
@@ -42,16 +42,16 @@ repository
 2. launch a powershell with elevated privileges
 3. `git clone --bare https://github.com/tomoum/.cfg.git $HOME\.cfg`
 4. `git --git-dir=$HOME\\.cfg\\ --work-tree=$HOME checkout --force`
-5. `cd $HOME`
-6. `cd .\sys_config`
-7. review all the scripts in this directory starting with `windows_init.ps1` and adjust which
+5. `git --git-dir=$HOME\\.cfg\\ --work-tree=$HOME config --local status.showUntrackedFiles no`
+6. `cd $HOME`
+7. `cd .\sys_config`
+8. review all the scripts in this directory starting with `windows_init.ps1` and adjust which
 ones you want to run based on your needs
-8. `.\windows_init`
-9. enjoy
-
+9. `.\windows_init`
+10. enjoy
 
 >Note:
->**The `--force` flagg will delete and replace files that already
+>**The `--force` flag will delete and replace files that already
 exist be careful**
 
 ## Misc
