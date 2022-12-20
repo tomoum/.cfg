@@ -29,6 +29,8 @@ else {
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineOption -EditMode Windows
+Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete # bash-like autocomplete
+
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory 'Ctrl+r'
 oh-my-posh init pwsh --config "$Home\oh-my-posh-config.json" | Invoke-Expression
 
@@ -36,6 +38,11 @@ oh-my-posh init pwsh --config "$Home\oh-my-posh-config.json" | Invoke-Expression
 # AUTO COMPLETE HANDLERS
 ################################################################
 Invoke-Expression -Command $(gh completion -s powershell | Out-String)
+
+Invoke-Expression (& {
+        $hook = if ($PSVersionTable.PSVersion.Major -lt 6) { 'prompt' } else { 'pwd' }
+    (zoxide init --hook $hook powershell | Out-String)
+    })
 
 Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
     param($wordToComplete, $commandAst, $cursorPosition)

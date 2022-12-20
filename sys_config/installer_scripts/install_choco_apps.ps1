@@ -46,6 +46,7 @@ $terminal_apps = @(
     'oh-my-posh'
     'bat'
     'fzf'
+    'zoxide'
     'ripgrep'
 )
 
