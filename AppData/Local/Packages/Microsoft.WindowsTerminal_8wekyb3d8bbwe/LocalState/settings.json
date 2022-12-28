@@ -58,14 +58,6 @@
                 "source": "Windows.Terminal.PowershellCore"
             },
             {
-                "commandline": "ssh muhatomo@muhatomolxpc",
-                "guid": "{aaf844e1-6298-4559-93ca-0d8ceaeb694f}",
-                "hidden": false,
-                "icon": "ms-appx:///ProfileIcons/pwsh.png",
-                "name": "SEL Linux",
-                "startingDirectory": "%USERPROFILE%"
-            },
-            {
                 "guid": "{59b72ad2-09f7-55ec-af87-65d062af8472}",
                 "hidden": false,
                 "name": "Ubuntu 20.04.5 LTS",
