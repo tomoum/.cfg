@@ -31,8 +31,8 @@ prune = true
 [alias]
 # List things
 tags = "tag -l"
-branches = "branch -a"
-remotes = "remote -v"
+brs = "branch -a"
+rmts = "remote -v"
 graph = "log --graph --oneline --decorate"
 
 # Shorten common commands
